@@ -1,5 +1,6 @@
 ---
-import Marca from './Marca.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/campana/logo.jpg';
 
 const enlaces = [
   { href: '/#propuestas', texto: 'Propuestas' },
@@ -10,12 +11,10 @@ const enlaces = [
 
 <header>
   <nav aria-label="Principal" class="mx-auto flex max-w-6xl items-center justify-between gap-x-3 px-4 md:px-8">
-    <a href="/" class="flex min-h-14 shrink-0 items-center gap-2.5 font-titular text-lg font-extrabold tracking-[-0.01em]">
-      <Marca />
-      <span class="sr-only min-[30rem]:not-sr-only">Merge sin conflictos</span>
-      <span class="sr-only">, inicio</span>
+    <a href="/" class="flex min-h-14 shrink-0 items-center">
+      <Image src={logo} alt="Merge sin conflictos, inicio" width={96} height={96} class="size-12 rounded-xl bg-blanco" />
     </a>
-    <ul class="flex gap-x-4 text-[0.9375rem] font-bold md:gap-x-7">
+    <ul class="flex gap-x-3 text-sm font-bold whitespace-nowrap min-[25rem]:gap-x-4 min-[25rem]:text-[0.9375rem] md:gap-x-7">
       {
         enlaces.map((e) => (
           <li>

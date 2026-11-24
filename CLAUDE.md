@@ -212,7 +212,8 @@ merge-sin-conflictos/
 - [ ] Fotos de Natalie y Jhair (opcional)
 - [ ] Plazos y pasos de cada propuesta (opcional)
 - [ ] Redes sociales y correo de la lista
-- [ ] Logo oficial (hoy se usa uno provisional en `src/assets/campana/logo.svg`) e imagen para compartir
+- [x] Logo oficial (`src/assets/campana/logo.jpg`)
+- [ ] Imagen para compartir (og-image)
 - [ ] Forma oficial de marcar y cédula real (hoy hay una imagen provisional en `src/assets/campana/como-marcar.svg`)
 - [ ] Confirmar el eslogan «Todas las ramas llevan a la Escuela.»
 - [ ] Fecha de la elección (para el llamado a votar)

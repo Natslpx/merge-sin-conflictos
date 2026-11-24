@@ -14,10 +14,10 @@ const propuestas = (await getCollection('propuestas')).sort((a, b) => a.data.ord
   titulo="Merge sin conflictos · Centro de Estudiantes EPCC"
   descripcion="Natalie Lazo y Jhair Torres: las propuestas de Merge sin conflictos para el Centro de Estudiantes de Ciencia de la Computación, UNSA."
 >
+  <Hero />
   <div class="mx-auto max-w-6xl px-4 md:px-8">
     <div class="historial">
       <Rail merge />
-      <Hero totalPropuestas={propuestas.length} />
       <ListaPropuestas propuestas={propuestas} />
     </div>
   </div>
