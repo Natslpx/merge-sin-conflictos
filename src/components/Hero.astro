@@ -4,9 +4,15 @@ import { Image } from 'astro:assets';
 import Icono from './Icono.astro';
 import logo from '../assets/campana/logo.png';
 
-// La fórmula sale de src/content/equipo (nombre corto y cargo).
+// La fórmula sale de src/content/equipo (nombre completo y cargo).
 const equipo = (await getCollection('equipo')).sort((a, b) => a.data.orden - b.data.orden);
 // Cada candidato es una rama que sale de main (el logo): azul para la presidenta, verde para el vice.
+// Nombres completos en dos líneas: «Natalie Marleny Lazo Paxi» → nombres arriba, apellidos abajo.
+const partirNombre = (nombre: string) => {
+  const p = nombre.trim().split(/\s+/);
+  const mitad = Math.ceil(p.length / 2);
+  return [p.slice(0, mitad).join(' '), p.slice(mitad).join(' ')];
+};
 const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-academico)' : 'var(--color-verde)');
 ---
 
@@ -88,8 +94,10 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
                 href={`#perfil-${integrante.id}`}
                 class="group grid h-full grid-rows-[1fr_auto] justify-items-center rounded-[1.75rem] no-underline"
               >
-                <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-tarjeta px-3 py-3 font-titular text-lg leading-tight font-bold text-balance ring-[3px] ring-(--c) transition-[box-shadow,transform] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:ring-[5px] md:text-xl">
-                  {integrante.data.nombre_corto}
+                <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-tarjeta px-3 py-3 font-titular text-base leading-tight font-bold text-balance ring-[3px] min-[25rem]:text-lg ring-(--c) transition-[box-shadow,transform] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:ring-[5px] md:text-xl">
+                  {partirNombre(integrante.data.nombre)[0]}
+                  <br />
+                  {partirNombre(integrante.data.nombre)[1]}
                 </span>
                 <span data-sin-bits class="mt-2 text-sm font-bold underline decoration-transparent decoration-2 underline-offset-4 transition-colors group-hover:decoration-current md:text-base">
                   {integrante.data.cargo}

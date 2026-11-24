@@ -94,7 +94,7 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
 1. **Navegación**: Propuestas, Nosotros, Cómo votar y Contacto. Por debajo de 480 px no cabe Contacto y se
    oculta («Cómo votar» lleva al cierre). Pastillas sólidas, sin efecto de vidrio.
 2. **Inicio (hero)**: contexto de la elección, nombre de la lista, «Somos lista 3», el eslogan, el logo,
-   Natalie Lazo (Presidenta) y Jhair Torres (Vicepresidente) como enlaces a sus perfiles, y el botón
+   los nombres completos de Natalie (Presidenta) y Jhair (Vicepresidente) como enlaces a sus perfiles, y el botón
    "Ver propuestas". Incluye la idea visual de ramas y merge. Los textos con `data-sin-bits` quedan
    libres de la lluvia de bits.
 3. **Propuestas**: agrupadas por eje (orden de `ejes.ts`, y dentro de cada eje por `orden`; ver
