@@ -122,7 +122,15 @@ const integrantes = await Promise.all(
     const boton = document.createElement('button');
     boton.type = 'button';
     boton.className = 'leer-mas';
-    boton.textContent = 'Leer por qué postulo';
+    // Visible: «Ver más». Para lectores de pantalla se agrega de quién es, porque hay dos botones iguales.
+    const nombre = caja.closest('article')?.querySelector('h3')?.firstChild?.textContent?.trim() ?? '';
+    boton.textContent = 'Ver más';
+    if (nombre) {
+      const contexto = document.createElement('span');
+      contexto.className = 'sr-only';
+      contexto.textContent = ` sobre ${nombre}`;
+      boton.append(contexto);
+    }
     boton.setAttribute('aria-controls', motivacion.id);
     caja.append(boton);
     const plegar = (plegado: boolean) => {

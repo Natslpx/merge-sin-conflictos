@@ -103,13 +103,16 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
    - un buscador que ignore tildes y mayúsculas;
    - un subtítulo por eje (con su nodo sobre la rama) y, en cada tarjeta, título, resumen y "Ver propuesta";
    - un estado vacío amable cuando la búsqueda no encuentra nada;
-   - desde 1024 px, dos columnas por eje (el nodo de la derecha se ubica con `data-col`).
+   - **escritorio**: cada eje es una columna con su propia rama y sus propuestas como commits (2×2 desde
+     1024 px; 4 columnas desde 1280 px, con main bajando al centro y repartiéndose en las cuatro ramas).
+     Los chips se ocultan (cada eje ya es una columna) y las columnas sin coincidencias se quedan con
+     el aviso «Ninguna coincide con la búsqueda». El móvil no cambia.
 4. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
    - **Natalie Lazo (Presidenta)** va primero; ambos tienen el mismo tamaño de avatar y de texto: nombre, apodo "Nat", cargo, ciclo,
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.
    - **Jhair Torres (Vicepresidente)** va a continuación, con el mismo formato: presentación, lista y motivación.
    - Usa foto si existe (`foto`). Si no, muestra un avatar con las iniciales en los colores de la marca.
-   - Desde 1024 px, lado a lado. En móvil, la motivación (último párrafo) se pliega tras «Leer por qué postulo».
+   - Desde 1024 px, lado a lado. En móvil, la motivación (último párrafo) se pliega tras «Ver más».
 5. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
 6. **Marca así**: cómo marcar en la cédula (número 3 y logo).
 7. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.

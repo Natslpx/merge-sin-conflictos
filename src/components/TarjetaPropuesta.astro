@@ -7,11 +7,9 @@ import Icono from './Icono.astro';
 
 interface Props {
   propuesta: CollectionEntry<'propuestas'>;
-  /** Columna en escritorio (0 o 1). El filtro la recalcula en el navegador. */
-  col?: number;
 }
 
-const { propuesta, col = 0 } = Astro.props;
+const { propuesta } = Astro.props;
 const { titulo, resumen, eje } = propuesta.data;
 const datosEje = ejePorId[eje];
 // Se busca en título, resumen, eje, pasos y el «por qué» (cuerpo del Markdown).
@@ -24,17 +22,16 @@ const textoBusqueda = normalizar(
   data-propuesta
   data-eje={eje}
   data-texto={textoBusqueda}
-  data-col={col}
-  class="commit group relative py-5 md:py-8"
+  class="commit group relative py-5 md:py-8 lg:py-4"
   style={`--x: var(--x-${eje}); --c: ${datosEje.color}`}
 >
-  <span class="nodo top-[calc(1.25rem+0.76rem-var(--r-nodo))] group-hover:bg-(--c) md:top-[calc(2rem+1.18rem-var(--r-nodo))] lg:top-[calc(2rem+0.96rem-var(--r-nodo))]" aria-hidden="true"
+  <span class="nodo top-[calc(1.25rem+0.76rem-var(--r-nodo))] group-hover:bg-(--c) md:top-[calc(2rem+1.18rem-var(--r-nodo))] lg:top-[calc(1rem+0.72rem-var(--r-nodo))]" aria-hidden="true"
   ></span>
   <article class="max-w-[60ch]">
-    <h4 class="text-[1.375rem] leading-[1.1] font-extrabold tracking-[-0.02em] text-balance md:text-4xl md:leading-[1.05] lg:text-[1.75rem] lg:leading-[1.1]">
+    <h4 class="text-[1.375rem] leading-[1.1] font-extrabold tracking-[-0.02em] text-balance md:text-4xl md:leading-[1.05] lg:text-xl lg:leading-[1.15]">
       <span class="titulo-eje" data-eje={eje}>{titulo}</span>
     </h4>
-    <p class="mt-2 max-w-[52ch] text-texto-suave md:text-lg">{resumen}</p>
+    <p class="mt-2 max-w-[52ch] text-texto-suave md:text-lg lg:text-base lg:leading-snug">{resumen}</p>
     <!-- El eje ya lo indica el subtítulo del grupo; la tarjeta solo enlaza al detalle. -->
     <p class="mt-1 text-sm">
       <a
@@ -49,15 +46,6 @@ const textoBusqueda = normalizar(
 </li>
 
 <style>
-  /*
-   * Escritorio: dos columnas. El nodo de la columna derecha se dibuja sobre la rama, a la
-   * misma altura que el de su vecina (100% = ancho de la tarjeta, más el espacio entre columnas).
-   */
-  @media (min-width: 64rem) {
-    .commit[data-col='1'] .nodo {
-      left: calc(-1 * (var(--rail) + var(--hueco)) + var(--x) - var(--r-nodo) - 100% - var(--col-gap));
-    }
-  }
   .commit:has(a:focus-visible) {
     outline: 3px solid var(--color-enlace);
     outline-offset: 4px;
