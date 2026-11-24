@@ -215,7 +215,8 @@ merge-sin-conflictos/
 - [ ] Plazos y pasos de cada propuesta (opcional)
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.jpg`)
-- [ ] Imagen para compartir (og-image)
+- [x] Imagen para compartir (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
 - [ ] Confirmar el eslogan «Todas las ramas llevan a la Escuela.»
-- [ ] Fecha de la elección (para el llamado a votar)
-- [ ] Repositorio en GitHub (la URL de GitHub Pages se toma de ahí al publicar)
+- [ ] Fecha de la elección (va a cambiar; por ahora se muestra «Fecha por confirmar» en Contacto)
+- [ ] Fecha del debate (será virtual; por ahora «Fecha por confirmar» en Contacto)
+- [x] Repositorio en GitHub: Natslpx/merge-sin-conflictos, con Pages activado (https://natslpx.github.io/merge-sin-conflictos/)

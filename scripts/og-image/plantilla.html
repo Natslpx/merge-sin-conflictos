@@ -1,0 +1,138 @@
+<!doctype html>
+<!--
+  Plantilla de la imagen para compartir (public/og-image.png, 1200×630).
+  Se convierte en PNG con: node scripts/og-image/generar.mjs
+-->
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'Bricolage';
+        src: url('../../node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2') format('woff2');
+        font-weight: 200 800;
+      }
+      @font-face {
+        font-family: 'Atkinson';
+        src: url('../../node_modules/@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-normal.woff2') format('woff2');
+        font-weight: 200 800;
+      }
+      :root {
+        --verde: #78c203;
+        --azul: #034da1;
+        --negro: #0b0f14;
+        --fondo: color-mix(in srgb, var(--azul) 3%, white);
+        --resaltado: color-mix(in srgb, var(--verde) 70%, white);
+      }
+      * { margin: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        position: relative;
+        background: var(--fondo);
+        color: var(--negro);
+        font-family: 'Atkinson', sans-serif;
+      }
+      /* Franja azul de la derecha, donde vive el logo (main). */
+      .lado {
+        position: absolute;
+        inset: 0 0 0 auto;
+        width: 430px;
+        background:
+          radial-gradient(22rem 16rem at 100% 100%, color-mix(in srgb, var(--verde) 30%, transparent), transparent 70%),
+          linear-gradient(160deg, var(--azul), color-mix(in srgb, var(--azul) 72%, var(--negro)));
+      }
+      .logo {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 400px;
+        filter: drop-shadow(0 10px 18px rgb(0 0 0 / 0.25));
+      }
+      .ramas { position: absolute; left: 0; top: 0; }
+      .texto {
+        position: absolute;
+        left: 72px;
+        top: 70px;
+        width: 680px;
+      }
+      .lista {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Bricolage', sans-serif;
+        font-weight: 800;
+        font-size: 30px;
+      }
+      .lista span {
+        display: inline-grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--verde);
+      }
+      h1 {
+        margin-top: 26px;
+        font-family: 'Bricolage', sans-serif;
+        font-weight: 800;
+        font-size: 92px;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        font-variation-settings: 'opsz' 96;
+      }
+      .resaltado {
+        background-image: linear-gradient(transparent 56%, var(--resaltado) 56%, var(--resaltado) 90%, transparent 90%);
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        padding-inline: 0.06em;
+      }
+      .formula {
+        margin-top: 40px;
+        display: grid;
+        gap: 14px;
+        list-style: none;
+        padding: 0;
+      }
+      .formula li {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        font-size: 30px;
+      }
+      .formula b { font-family: 'Bricolage', sans-serif; font-weight: 800; }
+      .formula li::before {
+        content: '';
+        flex: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--c);
+        transform: translateY(-2px);
+      }
+      .pie {
+        position: absolute;
+        left: 72px;
+        bottom: 52px;
+        font-size: 22px;
+        font-weight: 700;
+        color: color-mix(in srgb, var(--negro) 75%, white);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lado"></div>
+    <img class="logo" src="../../src/assets/campana/logo.png" alt="" />
+
+    <div class="texto">
+      <p class="lista">Somos lista <span>3</span></p>
+      <h1><span class="resaltado">Merge sin conflictos</span></h1>
+      <ul class="formula">
+        <li style="--c: var(--azul)"><span><b>Natalie Lazo</b> · Presidenta</span></li>
+        <li style="--c: var(--verde)"><span><b>Jhair Torres</b> · Vicepresidente</span></li>
+      </ul>
+    </div>
+
+    <p class="pie">Centro de Estudiantes · Ciencia de la Computación · UNSA</p>
+  </body>
+</html>

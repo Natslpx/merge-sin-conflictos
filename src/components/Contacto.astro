@@ -1,6 +1,5 @@
 ---
 import { ruta } from '../lib/rutas';
-import Pendiente from './Pendiente.astro';
 import BotonCompartir from './BotonCompartir.astro';
 ---
 
@@ -13,7 +12,17 @@ import BotonCompartir from './BotonCompartir.astro';
       <p class="mt-5 max-w-[40ch] text-lg">
         Elecciones del Centro de Estudiantes de Ciencia de la Computación.
       </p>
-      <p class="mt-3"><Pendiente>fecha de la elección</Pendiente></p>
+      <!-- Fechas aún no anunciadas: se reemplaza «por confirmar» cuando se conozcan. -->
+      <dl class="mt-6 grid max-w-md gap-3">
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-l-4 border-verde pl-4">
+          <dt class="font-bold">Elección</dt>
+          <dd class="text-blanco/85">Fecha por confirmar</dd>
+        </div>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-l-4 border-verde pl-4">
+          <dt class="font-bold">Debate virtual</dt>
+          <dd class="text-blanco/85">Fecha por confirmar</dd>
+        </div>
+      </dl>
       <div class="mt-8">
         <p class="mb-4 max-w-[36ch]">¿Conoces a alguien de la Escuela que debería verlo?</p>
         <BotonCompartir

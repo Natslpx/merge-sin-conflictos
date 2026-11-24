@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { getImage } from 'astro:assets';
 import logo from '../assets/campana/logo.png';
+import { ruta } from '../lib/rutas';
 
 // Ícono de la pestaña y de acceso directo, generados desde el logo de la campaña.
 const favicon = await getImage({ src: logo, width: 64, format: 'png' });
@@ -16,7 +17,9 @@ interface Props {
 
 const { titulo, descripcion } = Astro.props;
 const url = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-// La imagen para compartir (og:image) se agrega en la fase 7.
+// Imagen para compartir (public/og-image.png, 1200×630). Se genera con scripts/og-image/generar.mjs.
+// WhatsApp y las redes necesitan la URL absoluta, que existe al compilar para GitHub Pages.
+const imagen = Astro.site ? new URL(ruta('/og-image.png'), Astro.site).href : ruta('/og-image.png');
 ---
 
 <!doctype html>
@@ -35,6 +38,12 @@ const url = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefine
     <meta property="og:description" content={descripcion} />
     {url && <meta property="og:url" content={url} />}
     {url && <link rel="canonical" href={url} />}
+    <meta property="og:image" content={imagen} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Merge sin conflictos, lista 3: Natalie Lazo, presidenta, y Jhair Torres, vicepresidente." />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body class="flex min-h-dvh flex-col">
     <a
