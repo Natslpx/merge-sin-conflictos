@@ -12,12 +12,12 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const aqui = dirname(fileURLToPath(import.meta.url));
 const raiz = resolve(aqui, '../..');
 
-// Mismos ejes que src/data/ejes.ts, con los colores del tema claro de la imagen.
+// Mismos ejes que src/data/ejes.ts, con los colores del tema oscuro (el de la página).
 const EJES = {
-  academico: { nombre: 'Académico', color: '#034da1' },
+  academico: { nombre: 'Académico', color: 'color-mix(in srgb, #034da1 65%, white)' },
   oportunidades: { nombre: 'Oportunidades y talento', color: '#78c203' },
-  integracion: { nombre: 'Integración y bienestar', color: 'color-mix(in srgb, #034da1 62%, white)' },
-  participacion: { nombre: 'Participación y comunicación', color: 'color-mix(in srgb, #78c203 60%, #0b0f14)' },
+  integracion: { nombre: 'Integración y bienestar', color: 'color-mix(in srgb, #034da1 25%, white)' },
+  participacion: { nombre: 'Participación y comunicación', color: 'color-mix(in srgb, #78c203 75%, #0b0f14)' },
 };
 
 // Chrome sin interfaz deja la zona visible algo más chica que la ventana: se captura

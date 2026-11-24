@@ -247,7 +247,7 @@ merge-sin-conflictos/
   redacta como gestión, no como promesa
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.png`)
-- [x] Imagen para compartir (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
+- [x] Imagen para compartir en tema oscuro (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
 - [x] Eslogan oficial: «Unimos ideas, construimos cambios.» (inicio, cierre, footer e imagen para compartir)
 - [ ] Fecha de la elección (va a cambiar; por ahora se muestra «Fecha por confirmar» en Contacto)
 - [ ] Fecha del debate (será virtual; por ahora «Fecha por confirmar» en Contacto)

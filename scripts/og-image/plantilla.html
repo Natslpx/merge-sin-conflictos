@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Plantilla de la imagen para compartir (public/og-image.png, 1200×630).
+  Plantilla (tema oscuro, como la página) de la imagen para compartir (public/og-image.png, 1200×630).
   Se convierte en PNG con: node scripts/og-image/generar.mjs
 -->
 <html lang="es-PE">
@@ -21,15 +21,19 @@
         --verde: #78c203;
         --azul: #034da1;
         --negro: #0b0f14;
-        --fondo: color-mix(in srgb, var(--azul) 3%, white);
-        --resaltado: color-mix(in srgb, var(--verde) 70%, white);
+        --fondo: color-mix(in srgb, var(--azul) 7%, var(--negro));
+        --texto: #eef1f4;
+        --texto-suave: color-mix(in srgb, #eef1f4 75%, var(--negro));
+        --resaltado: color-mix(in srgb, var(--verde) 45%, var(--negro));
+        --enlace: color-mix(in srgb, var(--azul) 45%, white);
+        --eje-academico: color-mix(in srgb, var(--azul) 65%, white);
       }
       * { margin: 0; box-sizing: border-box; }
       html, body { width: 1200px; height: 630px; overflow: hidden; }
       body {
         position: relative;
         background: var(--fondo);
-        color: var(--negro);
+        color: var(--texto);
         font-family: 'Atkinson', sans-serif;
       }
       /* Franja azul de la derecha, donde vive el logo (main). */
@@ -71,6 +75,7 @@
         height: 46px;
         border-radius: 50%;
         background: var(--verde);
+        color: var(--negro);
       }
       h1 {
         margin-top: 26px;
@@ -92,7 +97,7 @@
         font-family: 'Bricolage', sans-serif;
         font-weight: 700;
         font-size: 34px;
-        color: var(--azul);
+        color: var(--enlace);
       }
       .formula {
         margin-top: 32px;
@@ -123,7 +128,7 @@
         bottom: 52px;
         font-size: 22px;
         font-weight: 700;
-        color: color-mix(in srgb, var(--negro) 75%, white);
+        color: var(--texto-suave);
       }
     </style>
   </head>
@@ -136,7 +141,7 @@
       <h1><span class="resaltado">Merge sin conflictos</span></h1>
       <p class="eslogan">Unimos ideas, construimos cambios.</p>
       <ul class="formula">
-        <li style="--c: var(--azul)"><span><b>Natalie Lazo</b> · Presidenta</span></li>
+        <li style="--c: var(--eje-academico)"><span><b>Natalie Lazo</b> · Presidenta</span></li>
         <li style="--c: var(--verde)"><span><b>Jhair Torres</b> · Vicepresidente</span></li>
       </ul>
     </div>

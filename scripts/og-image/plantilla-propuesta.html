@@ -21,14 +21,16 @@
         --verde: #78c203;
         --azul: #034da1;
         --negro: #0b0f14;
-        --fondo: color-mix(in srgb, var(--azul) 3%, white);
+        --fondo: color-mix(in srgb, var(--azul) 7%, var(--negro));
+        --texto: #eef1f4;
+        --texto-suave: color-mix(in srgb, #eef1f4 75%, var(--negro));
       }
       * { margin: 0; box-sizing: border-box; }
       html, body { width: 1200px; height: 630px; overflow: hidden; }
       body {
         position: relative;
         background: var(--fondo);
-        color: var(--negro);
+        color: var(--texto);
         font-family: 'Atkinson', sans-serif;
       }
       /* Rama del eje a la izquierda, como en la página. */
@@ -88,6 +90,7 @@
         height: 40px;
         border-radius: 50%;
         background: var(--verde);
+        color: var(--negro);
       }
       .eje {
         margin-top: 52px;
@@ -119,7 +122,7 @@
         margin-top: auto;
         font-size: 22px;
         font-weight: 700;
-        color: color-mix(in srgb, var(--negro) 75%, white);
+        color: var(--texto-suave);
       }
     </style>
   </head>
