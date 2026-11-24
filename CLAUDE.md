@@ -116,6 +116,8 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
 (cuerpo del Markdown), «Cómo lo vamos a lograr» (`pasos`) y `plazo`. Incluye enlaces a la propuesta
 anterior y la siguiente, y un botón para volver a todas.
 
+**404** (`src/pages/404.astro`): página para enlaces rotos, con enlaces a las propuestas y al inicio.
+
 Agrega metadatos para compartir (Open Graph: título, descripción e imagen) en todas las páginas,
 porque el enlace se va a compartir por WhatsApp.
 
@@ -236,7 +238,7 @@ merge-sin-conflictos/
 - [x] Gestión: de 2027-A a 2028-A. El Centro no maneja fondos; lo que depende de la Dirección se
   redacta como gestión, no como promesa
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
-- [x] Logo oficial (`src/assets/campana/logo.jpg`)
+- [x] Logo oficial (`src/assets/campana/logo.png`)
 - [x] Imagen para compartir (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
 - [ ] Confirmar el eslogan «Todas las ramas llevan a la Escuela.»
 - [ ] Fecha de la elección (va a cambiar; por ahora se muestra «Fecha por confirmar» en Contacto)
