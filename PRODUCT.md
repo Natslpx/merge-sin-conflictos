@@ -58,7 +58,7 @@ sin conflictos.
   propuesta con enlaces a la anterior y la siguiente.
 - Todo el texto visible en español de Perú.
 - **Abierto (no inventar):** fecha de la elección (aún no existe; no se muestra marcador en el sitio
-  público) e imagen para compartir (og-image). Contacto: solo el correo nlazop@unsa.edu.pe.
+  público) e imagen para compartir (og-image). Contacto: solo los correos nlazop@unsa.edu.pe (Natalie) y jtorreschav@unsa.edu.pe (Jhair).
 
 ## Brand Commitments
 

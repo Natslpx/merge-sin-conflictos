@@ -112,7 +112,7 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
    - Desde 1024 px, lado a lado. En móvil, la motivación (último párrafo) se pliega tras «Leer por qué postulo».
 5. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
 6. **Marca así**: cómo marcar en la cédula (número 3 y logo).
-7. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
+7. **Contacto**: correos nlazop@unsa.edu.pe (Natalie) y jtorreschav@unsa.edu.pe (Jhair). Cierre con un llamado a votar.
 8. **Footer**: nombre de la lista, EPCC y UNSA.
 
 **Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen (qué), «Por qué lo proponemos»
@@ -245,7 +245,7 @@ merge-sin-conflictos/
 - [x] La cédula muestra el número 3 y el logo
 - [x] Gestión: de 2027-A a 2028-A. El Centro no maneja fondos; lo que depende de la Dirección se
   redacta como gestión, no como promesa
-- [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
+- [x] Contacto: solo correos, nlazop@unsa.edu.pe (Natalie) y jtorreschav@unsa.edu.pe (Jhair), sin redes sociales
 - [x] Logo oficial (`src/assets/campana/logo.png`)
 - [x] Imagen para compartir en tema oscuro (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
 - [x] Eslogan oficial: «Unimos ideas, construimos cambios.» (inicio, cierre, footer e imagen para compartir)

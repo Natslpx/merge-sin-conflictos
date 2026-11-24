@@ -1,6 +1,12 @@
 ---
 import { ruta } from '../lib/rutas';
 import BotonCompartir from './BotonCompartir.astro';
+
+// Correos de contacto de la fórmula (dados por la lista).
+const contactos = [
+  { nombre: 'Natalie Lazo', cargo: 'Presidenta', correo: 'nlazop@unsa.edu.pe' },
+  { nombre: 'Jhair Torres', cargo: 'Vicepresidente', correo: 'jtorreschav@unsa.edu.pe' },
+];
 ---
 
 <section id="contacto" aria-labelledby="titulo-contacto" class="fondo-contacto scroll-mt-20 py-16 text-blanco md:py-24">
@@ -38,11 +44,21 @@ import BotonCompartir from './BotonCompartir.astro';
     <div class="md:border-l-2 md:border-blanco/30 md:pl-10">
       <h2 id="titulo-contacto" class="text-2xl font-extrabold md:text-3xl">Contacto</h2>
       <p class="mt-5">Escríbenos a</p>
-      <a
-        href="mailto:nlazop@unsa.edu.pe"
-        class="mt-1 inline-flex min-h-11 items-center text-lg font-bold break-all underline decoration-verde decoration-2 underline-offset-4 hover:decoration-blanco md:text-xl"
-        >nlazop@unsa.edu.pe</a
-      >
+      <ul class="mt-2 space-y-4">
+        {
+          contactos.map((c) => (
+            <li>
+              <p class="text-sm font-bold text-blanco/85">{c.nombre} · {c.cargo}</p>
+              <a
+                href={`mailto:${c.correo}`}
+                class="inline-flex min-h-11 items-center text-lg font-bold break-all underline decoration-verde decoration-2 underline-offset-4 hover:decoration-blanco md:text-xl"
+              >
+                {c.correo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 </section>

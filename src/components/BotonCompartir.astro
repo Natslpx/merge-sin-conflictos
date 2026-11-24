@@ -1,7 +1,6 @@
 ---
-import Pendiente from './Pendiente.astro';
 import Icono from './Icono.astro';
-import { enlaceWhatsApp } from '../lib/compartir';
+import { enlaceWhatsApp, urlPublica } from '../lib/compartir';
 
 interface Props {
   texto: string;
@@ -12,8 +11,8 @@ interface Props {
 }
 
 const { texto, ruta, etiqueta = 'Compartir por WhatsApp', tono = 'normal' } = Astro.props;
-const { href, tieneUrl } = enlaceWhatsApp(texto, ruta, Astro.site);
-const url = Astro.site ? new URL(ruta, Astro.site).href : ruta;
+const href = enlaceWhatsApp(texto, ruta, Astro.site);
+const url = urlPublica(ruta, Astro.site);
 // Con el menú de compartir del celular ya no se habla de WhatsApp: el usuario elige la app.
 const etiquetaNativa = etiqueta.includes('WhatsApp') ? 'Compartir' : etiqueta;
 const sobreAzul = tono === 'sobre-azul';
@@ -52,13 +51,6 @@ const sobreAzul = tono === 'sobre-azul';
     </button>
   </div>
   <p class="sr-only" role="status" aria-live="polite" data-aviso></p>
-  {
-    !tieneUrl && (
-      <p class="mt-3">
-        <Pendiente>URL del sitio para incluir el enlace en el mensaje</Pendiente>
-      </p>
-    )
-  }
 </div>
 
 <script>
