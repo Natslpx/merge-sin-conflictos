@@ -16,7 +16,9 @@ const partirNombre = (nombre: string) => {
 const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-academico)' : 'var(--color-verde)');
 ---
 
-<div class="relative">
+<div class="relative isolate">
+  <!-- Lluvia de bits (0 y 1) detrás del inicio; se desvanece al acercarse a Propuestas. -->
+  <canvas class="bits pointer-events-none absolute inset-0 -z-10 size-full" aria-hidden="true" data-bits></canvas>
   <section
     id="inicio"
     aria-labelledby="titulo-inicio"
@@ -97,6 +99,11 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
       --t: 6px;
     }
   }
+  .bits {
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 92%);
+    mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 92%);
+  }
+
   /* Sombra que sigue la silueta del logo (ya no tiene fondo). */
   .logo-main {
     filter: drop-shadow(0 12px 18px rgb(3 77 161 / 0.22));
@@ -132,3 +139,114 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
     }
   }
 </style>
+
+<script>
+  // Lluvia de bits: columnas de 0 y 1 que caen despacio, en azul y algunas en verde.
+  // Se pausa fuera de pantalla o con la pestaña oculta. Con movimiento reducido queda quieta.
+  const lienzo = document.querySelector<HTMLCanvasElement>('[data-bits]');
+  const ctx = lienzo?.getContext('2d');
+
+  if (lienzo && ctx) {
+    const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const oscuro = window.matchMedia('(prefers-color-scheme: dark)');
+    const TAM = 18; // alto de cada bit en px
+    type Columna = { x: number; y: number; vel: number; largo: number; bits: string[]; verde: boolean };
+    let columnas: Columna[] = [];
+    let ancho = 0;
+    let alto = 0;
+
+    const bit = () => (Math.random() < 0.5 ? '0' : '1');
+    const nueva = (x: number, arriba: boolean): Columna => {
+      const largo = 5 + Math.floor(Math.random() * 9);
+      return {
+        x,
+        y: arriba ? -Math.random() * alto * 0.6 : Math.random() * alto,
+        vel: 28 + Math.random() * 46, // px por segundo
+        largo,
+        bits: Array.from({ length: largo }, bit),
+        verde: Math.random() < 0.28,
+      };
+    };
+
+    const medir = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      ancho = lienzo.clientWidth;
+      alto = lienzo.clientHeight;
+      lienzo.width = Math.round(ancho * dpr);
+      lienzo.height = Math.round(alto * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = `700 ${TAM - 4}px ui-monospace, Consolas, monospace`;
+      ctx.textAlign = 'center';
+      const paso = ancho < 640 ? 26 : 30;
+      columnas = [];
+      for (let x = paso / 2; x < ancho; x += paso) {
+        // No todas las columnas llevan bits: deja aire para que no sea una pared.
+        if (Math.random() < 0.55) columnas.push(nueva(x, false));
+      }
+    };
+
+    const dibujar = () => {
+      ctx.clearRect(0, 0, ancho, alto);
+      const fuerza = oscuro.matches ? 0.5 : 0.32;
+      for (const c of columnas) {
+        ctx.fillStyle = c.verde ? '#78c203' : oscuro.matches ? '#6f9fe0' : '#034da1';
+        for (let i = 0; i < c.largo; i++) {
+          const y = c.y - i * TAM;
+          if (y < -TAM || y > alto + TAM) continue;
+          // La cabeza es la más visible; la cola se apaga.
+          ctx.globalAlpha = fuerza * (1 - i / c.largo) * (i === 0 ? 1.4 : 1);
+          ctx.fillText(c.bits[i]!, c.x, y);
+        }
+      }
+      ctx.globalAlpha = 1;
+    };
+
+    let anterior = 0;
+    let acumulado = 0;
+    let animando = false;
+    let idCuadro = 0;
+
+    const cuadro = (t: number) => {
+      const dt = Math.min((t - anterior) / 1000, 0.1);
+      anterior = t;
+      acumulado += dt;
+      for (const c of columnas) {
+        c.y += c.vel * dt;
+        if (c.y - c.largo * TAM > alto) Object.assign(c, nueva(c.x, true));
+      }
+      // Los bits cambian de valor de vez en cuando, como si se recalcularan.
+      if (acumulado > 0.12) {
+        acumulado = 0;
+        for (const c of columnas) if (Math.random() < 0.3) c.bits[Math.floor(Math.random() * c.largo)] = bit();
+      }
+      dibujar();
+      idCuadro = requestAnimationFrame(cuadro);
+    };
+
+    const iniciar = () => {
+      if (animando || reducido) return;
+      animando = true;
+      anterior = performance.now();
+      idCuadro = requestAnimationFrame(cuadro);
+    };
+    const detener = () => {
+      animando = false;
+      cancelAnimationFrame(idCuadro);
+    };
+
+    medir();
+    dibujar();
+
+    let visible = true;
+    new IntersectionObserver(([e]) => {
+      visible = Boolean(e?.isIntersecting);
+      visible && !document.hidden ? iniciar() : detener();
+    }).observe(lienzo);
+    document.addEventListener('visibilitychange', () => (visible && !document.hidden ? iniciar() : detener()));
+    new ResizeObserver(() => {
+      medir();
+      dibujar();
+    }).observe(lienzo);
+    oscuro.addEventListener('change', dibujar);
+  }
+</script>
