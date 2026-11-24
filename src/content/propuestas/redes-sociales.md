@@ -3,7 +3,6 @@ titulo: Fortalecimiento de las redes sociales del Centro de Estudiantes
 eje: participacion
 resumen: Redes del Centro de Estudiantes activas y ordenadas, con eventos, convocatorias, oportunidades y logros de la Escuela.
 orden: 13
-plazo: "Desde el inicio de 2027-A"
 pasos:
   - "Formar un equipo responsable de las redes del Centro de Estudiantes."
   - "Publicar con un calendario fijo: eventos, convocatorias, oportunidades e información académica."

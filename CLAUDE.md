@@ -117,7 +117,8 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
 8. **Footer**: nombre de la lista, EPCC y UNSA.
 
 **Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen (qué), «Por qué lo proponemos»
-(cuerpo del Markdown), «Cómo lo vamos a lograr» (`pasos`) y `plazo`. Incluye enlaces a la propuesta
+(cuerpo del Markdown) y «Cómo lo vamos a lograr» (`pasos`). Sin plazos. En escritorio, el logo de la
+lista va en la columna derecha, fijo al bajar. Incluye enlaces a la propuesta
 anterior y la siguiente, «Más propuestas de <eje>», un botón para volver a todas y para compartir.
 Solo se dibuja la rama de su eje.
 
@@ -151,7 +152,6 @@ titulo: string            # obligatorio
 eje: academico | oportunidades | integracion | participacion   # obligatorio
 resumen: string           # obligatorio, máximo 140 caracteres (valídalo en el esquema)
 orden: number             # obligatorio, define el orden en la lista
-plazo: string             # opcional, con los semestres de la gestión, por ejemplo "2027-A"
 pasos: string[]           # opcional, cómo se va a lograr
 ---
 Por qué la proponemos: el problema o la necesidad que atiende (Markdown).
@@ -240,7 +240,7 @@ merge-sin-conflictos/
 - [x] Año de Jhair (tercer año)
 - [x] Foto de Natalie (`src/assets/equipo/natalie-lazo.png`)
 - [x] Foto de Jhair (`src/assets/equipo/jhair-torres.jpg`)
-- [x] Plazos y pasos de cada propuesta (borrador redactado; pendiente de validación)
+- [x] Pasos de cada propuesta (borrador redactado; pendiente de validación). Los plazos se quitaron
 - [x] Visión y compromisos (borrador redactado; pendiente de validación)
 - [x] Ambos están en tercer año
 - [x] La cédula muestra el número 3 y el logo

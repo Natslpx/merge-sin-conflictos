@@ -8,6 +8,8 @@ import Icono from '../../components/Icono.astro';
 import BotonCompartir from '../../components/BotonCompartir.astro';
 import { ejePorId } from '../../data/ejes';
 import { ordenarPropuestas } from '../../lib/orden';
+import { Image } from 'astro:assets';
+import logo from '../../assets/campana/logo.png';
 import { existsSync } from 'node:fs';
 
 export const getStaticPaths = (async () => {
@@ -31,7 +33,7 @@ interface Props {
 }
 
 const { propuesta, anterior, siguiente, mismoEje } = Astro.props;
-const { titulo, resumen, eje, pasos, plazo } = propuesta.data;
+const { titulo, resumen, eje, pasos } = propuesta.data;
 const datosEje = ejePorId[eje];
 const { Content } = await render(propuesta);
 // Imagen para compartir de esta propuesta. Si aún no se generó (propuesta nueva), se usa la general.
@@ -62,6 +64,8 @@ const vecinas = [
         Todas las propuestas
       </a>
 
+      <!-- Escritorio: el texto a la izquierda y el logo de la lista en la columna derecha, fijo al bajar. -->
+      <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_15rem] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_19rem]">
       <article class="relative mt-8 md:mt-12" style={`--x: var(--x-${eje}); --c: ${datosEje.color}`}>
         <span class="nodo top-[calc(1.35rem-var(--r-nodo))] bg-(--c) md:top-[calc(2.2rem-var(--r-nodo))]" aria-hidden="true"></span>
         <h1 class="max-w-[22ch] text-[clamp(2rem,8vw,3.75rem)] leading-[1.02] font-extrabold tracking-[-0.025em]">
@@ -73,7 +77,7 @@ const vecinas = [
         </p>
         <p class="mt-5 max-w-[48ch] text-xl leading-snug text-texto-suave md:text-2xl">{resumen}</p>
 
-        <!-- Qué (resumen) → por qué (cuerpo del Markdown) → cómo (pasos) → cuándo (plazo). -->
+        <!-- Qué (resumen) → por qué (cuerpo del Markdown) → cómo (pasos). -->
         <section class="mt-10 max-w-[65ch]" aria-labelledby="titulo-por-que">
           <h2 id="titulo-por-que" class="text-2xl font-extrabold">Por qué lo proponemos</h2>
           <div class="cuerpo mt-4 space-y-4 text-lg">
@@ -94,16 +98,6 @@ const vecinas = [
           )
         }
 
-        {
-          plazo && (
-            <p class="mt-8 text-lg">
-              <strong>Plazo:</strong>{' '}
-              {/* Los semestres (2027-A) no se parten al cambiar de línea. */}
-              {plazo.split(/(\d{4}-[AB])/).map((parte, i) => (i % 2 ? <span class="whitespace-nowrap">{parte}</span> : parte))}
-            </p>
-          )
-        }
-
         <div class="mt-10">
           <BotonCompartir
             texto={`Propuesta de Merge sin conflictos: ${titulo}.`}
@@ -112,6 +106,15 @@ const vecinas = [
           />
         </div>
       </article>
+      <div class="hidden lg:block">
+        <Image
+          src={logo}
+          alt=""
+          width={640}
+          class="logo-detalle sticky top-24 mt-16 h-auto w-full"
+        />
+      </div>
+      </div>
 
       {
         mismoEje.length > 0 && (
@@ -170,3 +173,10 @@ const vecinas = [
     </div>
   </div>
 </Base>
+
+<style>
+  /* Misma sombra que el logo del inicio. */
+  .logo-detalle {
+    filter: drop-shadow(0 12px 18px rgb(3 77 161 / 0.22));
+  }
+</style>

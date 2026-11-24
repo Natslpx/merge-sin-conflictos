@@ -14,7 +14,6 @@ const propuestas = defineCollection({
       .min(1)
       .max(140, { message: 'El resumen no puede pasar de 140 caracteres.' }),
     orden: z.number().int(),
-    plazo: z.string().optional(),
     pasos: z.array(z.string()).optional(),
   }),
 });

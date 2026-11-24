@@ -79,10 +79,10 @@ sin conflictos.
   desde 2023, finalista del Data Fest BCP 2026 como líder de equipo: `src/content/equipo/natalie-lazo.md`.
 - Presentación definitiva de Jhair y fotos de ambos: `src/content/equipo/`, `src/assets/equipo/`.
 - Logo oficial: `src/assets/campana/logo.png`.
-- Pasos y plazos de las 14 propuestas, y compromisos de gestión (`Compromisos.astro`): redactados
+- Pasos de las 14 propuestas, y compromisos de gestión (`Compromisos.astro`): redactados
   como borrador a pedido de la candidata; los valida ella.
 - La cédula mostrará el número 3 y el logo (confirmado por la candidata).
-- La gestión dura de 2027-A a 2028-A (tres semestres); los plazos usan esos semestres.
+- La gestión dura de 2027-A a 2028-A (tres semestres). Las propuestas no muestran plazos.
 - El Centro de Estudiantes no maneja fondos: no prometer rendición de gastos.
 - Lo que requiere espacios o servicios de la Escuela se redacta como «gestionar/coordinar con la
   Dirección», nunca como hecho garantizado.

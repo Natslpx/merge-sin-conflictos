@@ -3,7 +3,6 @@ titulo: Difusión de competencias y oportunidades tecnológicas
 eje: oportunidades
 resumen: Un canal oficial con convocatorias, competencias, hackathones y eventos tech para que nadie se pierda una oportunidad.
 orden: 2
-plazo: "Desde el inicio de 2027-A y durante toda la gestión"
 pasos:
   - "Abrir un canal oficial del Centro de Estudiantes solo para oportunidades."
   - "Designar responsables de buscar y verificar convocatorias antes de publicarlas."
