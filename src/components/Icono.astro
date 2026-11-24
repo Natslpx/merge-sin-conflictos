@@ -1,7 +1,7 @@
 ---
 // Íconos dibujados con un solo trazo de 2 px, para que todos tengan el mismo peso.
 interface Props {
-  nombre: 'abajo' | 'derecha' | 'izquierda' | 'check' | 'compartir' | 'buscar';
+  nombre: 'abajo' | 'derecha' | 'izquierda' | 'check' | 'compartir' | 'buscar' | 'pausa' | 'reproducir';
   class?: string;
 }
 const { nombre, class: clase } = Astro.props;
@@ -12,6 +12,8 @@ const trazos: Record<Props['nombre'], string> = {
   check: 'M5 12.5l4.5 4.5L19 7.5',
   compartir: 'M12 15V4M7.5 8.5L12 4l4.5 4.5M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13',
   buscar: 'M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5L20 20',
+  pausa: 'M9 6v12M15 6v12',
+  reproducir: 'M8 5.5v13l10.5-6.5z',
 };
 ---
 

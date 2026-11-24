@@ -10,4 +10,4 @@ pasos:
   - "Definir horarios fuera de las clases y reglas de uso y cuidado."
   - "Designar responsables del préstamo de raquetas y pelotas."
 ---
-La Escuela tiene una mesa de tenis que hoy no está disponible para los estudiantes. Abrirla con horarios y reglas claras da un espacio para descansar y compartir entre clases, sin afectar las actividades académicas.
+La Escuela tiene una mesa de tenis, pero hoy no está habilitada para usarla. Abrirla con horarios y reglas claras da un espacio para descansar y compartir entre clases, sin afectar las actividades académicas.

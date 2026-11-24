@@ -21,7 +21,12 @@ const chip =
 
   <!-- Los controles aparecen solo con JavaScript; sin él se ven todas las propuestas. -->
   <div data-controles hidden class="mt-8 space-y-5">
-    <div role="group" aria-label="Filtrar por eje" class="flex flex-wrap gap-2">
+    <!-- En móvil los chips van en una sola fila que se desliza; desde tablet se acomodan en varias. -->
+    <div
+      role="group"
+      aria-label="Filtrar por eje"
+      class="chips -mr-4 flex snap-x gap-2 overflow-x-auto py-1.5 pr-4 pl-1 md:mr-0 md:flex-wrap md:overflow-visible md:pr-0"
+    >
       <button type="button" class={chip} data-filtro="todas" aria-pressed="true">
         <Icono nombre="check" class="check size-4" />
         Todas
@@ -54,9 +59,38 @@ const chip =
     <p class="sr-only" role="status" aria-live="polite" data-estado></p>
   </div>
 
-  <ul class="mt-4" data-lista>
-    {propuestas.map((propuesta) => <TarjetaPropuesta propuesta={propuesta} />)}
-  </ul>
+  <!-- Agrupadas por eje: cada grupo es una rama, con su nodo de inicio sobre la columna. -->
+  <div class="mt-4" data-lista>
+    {
+      ejes.map((eje) => {
+        const grupo = propuestas.filter((p) => p.data.eje === eje.id);
+        return (
+          grupo.length > 0 && (
+            <section
+              data-grupo={eje.id}
+              aria-labelledby={`grupo-${eje.id}`}
+              class="pt-6 md:pt-10"
+              style={`--x: var(--x-${eje.id}); --c: ${eje.color}`}
+            >
+              <h3 id={`grupo-${eje.id}`} class="relative font-texto text-sm leading-snug font-bold tracking-[0.08em] uppercase md:text-base">
+                <span class="nodo top-[calc(0.65lh-var(--r-nodo))] bg-(--c)" aria-hidden="true" />
+                <span class="mr-2 inline-block size-2.5 rounded-full bg-(--c) align-[0.05em]" aria-hidden="true" />
+                {eje.nombre}{' '}
+                <span class="font-normal tracking-normal whitespace-nowrap text-texto-suave normal-case">
+                  · {grupo.length} {grupo.length === 1 ? 'propuesta' : 'propuestas'}
+                </span>
+              </h3>
+              <ul>
+                {grupo.map((propuesta) => (
+                  <TarjetaPropuesta propuesta={propuesta} />
+                ))}
+              </ul>
+            </section>
+          )
+        );
+      })
+    }
+  </div>
 
   <div data-vacio hidden class="mt-6 max-w-[52ch] rounded-2xl border-2 border-dashed border-borde p-6">
     <p class="font-titular text-xl font-bold">
@@ -74,6 +108,16 @@ const chip =
 </section>
 
 <style>
+  .chips {
+    scrollbar-width: none;
+  }
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+  .chips > * {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
   .chip :global(.check) {
     display: none;
   }
@@ -94,6 +138,7 @@ const chip =
     const chips = [...raiz.querySelectorAll<HTMLButtonElement>('[data-filtro]')];
     const buscador = raiz.querySelector<HTMLInputElement>('[data-buscador]')!;
     const items = [...raiz.querySelectorAll<HTMLElement>('[data-propuesta]')];
+    const grupos = [...raiz.querySelectorAll<HTMLElement>('[data-grupo]')];
     const vacio = raiz.querySelector<HTMLElement>('[data-vacio]')!;
     const vacioConsulta = raiz.querySelector<HTMLElement>('[data-vacio-consulta]')!;
     const estado = raiz.querySelector<HTMLElement>('[data-estado]')!;
@@ -112,6 +157,8 @@ const chip =
         item.hidden = !coincide;
         if (coincide) visibles++;
       }
+      // Un grupo sin propuestas visibles se oculta entero (con su subtítulo).
+      for (const grupo of grupos) grupo.hidden = !grupo.querySelector('[data-propuesta]:not([hidden])');
       for (const rama of ramas) rama.classList.toggle('tenue', eje !== 'todas' && rama.dataset.rama !== eje);
       vacio.hidden = visibles > 0;
       vacioConsulta.textContent = buscador.value.trim() ? ` con «${buscador.value.trim()}»` : '';

@@ -4,21 +4,27 @@ import { Image } from 'astro:assets';
 import Icono from './Icono.astro';
 import logo from '../assets/campana/logo.png';
 
-// La fórmula sale de src/content/equipo (nombre completo y cargo).
+// La fórmula sale de src/content/equipo (nombre corto y cargo).
 const equipo = (await getCollection('equipo')).sort((a, b) => a.data.orden - b.data.orden);
 // Cada candidato es una rama que sale de main (el logo): azul para la presidenta, verde para el vice.
-// «Natalie Marleny Lazo Paxi» → nombres en una línea y apellidos en la siguiente.
-const partirNombre = (nombre: string) => {
-  const p = nombre.trim().split(/\s+/);
-  const mitad = Math.ceil(p.length / 2);
-  return [p.slice(0, mitad).join(' '), p.slice(mitad).join(' ')];
-};
 const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-academico)' : 'var(--color-verde)');
 ---
 
 <div class="relative isolate">
   <!-- Lluvia de bits (0 y 1) detrás del inicio; se desvanece al acercarse a Propuestas. -->
   <canvas class="bits pointer-events-none absolute inset-0 -z-10 size-full" aria-hidden="true" data-bits></canvas>
+  <!-- WCAG 2.2.2: la animación se puede pausar. Solo aparece si la animación corre. -->
+  <button
+    type="button"
+    hidden
+    aria-pressed="false"
+    data-bits-pausa
+    class="absolute right-3 bottom-3 z-10 grid size-11 place-items-center rounded-full bg-tarjeta text-texto ring-1 ring-borde transition-colors hover:ring-2 hover:ring-texto md:right-6 md:bottom-6"
+  >
+    <Icono nombre="pausa" class="icono-pausa" />
+    <Icono nombre="reproducir" class="icono-reproducir" />
+    <span class="sr-only">Pausar la animación de fondo</span>
+  </button>
   <section
     id="inicio"
     aria-labelledby="titulo-inicio"
@@ -70,19 +76,29 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
       }
     </svg>
 
-    <ul class="relative grid w-full max-w-lg grid-cols-2 gap-4 md:gap-6">
+    <!-- La fórmula: cada nombre lleva a su perfil en «Quiénes somos». -->
+    <div class="relative w-full max-w-lg">
       <span class="linea-main absolute inset-y-0 left-1/2 -translate-x-1/2" aria-hidden="true"></span>
-      {
-        equipo.map((integrante) => (
-          <li class="relative grid grid-rows-[1fr_auto] justify-items-center" style={`--c: ${colorRama(integrante.data.cargo)}`}>
-            <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-tarjeta px-3 py-3 font-titular text-base leading-tight font-bold text-balance ring-[3px] ring-(--c) min-[25rem]:text-lg md:text-xl">
-              {partirNombre(integrante.data.nombre)[0]}<br />{partirNombre(integrante.data.nombre)[1]}
-            </span>
-            <span class="mt-2 text-sm font-bold md:text-base">{integrante.data.cargo}</span>
-          </li>
-        ))
-      }
-    </ul>
+      <ul class="relative grid grid-cols-2 gap-4 md:gap-6">
+        {
+          equipo.map((integrante) => (
+            <li style={`--c: ${colorRama(integrante.data.cargo)}`}>
+              <a
+                href={`#perfil-${integrante.id}`}
+                class="group grid h-full grid-rows-[1fr_auto] justify-items-center rounded-[1.75rem] no-underline"
+              >
+                <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-tarjeta px-3 py-3 font-titular text-lg leading-tight font-bold text-balance ring-[3px] ring-(--c) transition-[box-shadow,transform] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:ring-[5px] md:text-xl">
+                  {integrante.data.nombre_corto}
+                </span>
+                <span class="mt-2 text-sm font-bold underline decoration-transparent decoration-2 underline-offset-4 transition-colors group-hover:decoration-current md:text-base">
+                  {integrante.data.cargo}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
     <span class="linea-main h-6 md:h-8" aria-hidden="true"></span>
 
@@ -114,6 +130,14 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
   }
 
   /* Sombra que sigue la silueta del logo (ya no tiene fondo). */
+  [data-bits-pausa] :global(.icono-reproducir),
+  [data-bits-pausa][aria-pressed='true'] :global(.icono-pausa) {
+    display: none;
+  }
+  [data-bits-pausa][aria-pressed='true'] :global(.icono-reproducir) {
+    display: block;
+  }
+
   .logo-main {
     filter: drop-shadow(0 12px 18px rgb(3 77 161 / 0.22));
   }
@@ -232,8 +256,9 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
       idCuadro = requestAnimationFrame(cuadro);
     };
 
+    let pausado = false;
     const iniciar = () => {
-      if (animando || reducido) return;
+      if (animando || reducido || pausado) return;
       animando = true;
       anterior = performance.now();
       idCuadro = requestAnimationFrame(cuadro);
@@ -257,5 +282,16 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
       dibujar();
     }).observe(lienzo);
     oscuro.addEventListener('change', dibujar);
+
+    const botonPausa = document.querySelector<HTMLButtonElement>('[data-bits-pausa]');
+    // Botón de alternancia: la etiqueta no cambia; aria-pressed indica si está pausada.
+    if (botonPausa && !reducido) {
+      botonPausa.hidden = false;
+      botonPausa.addEventListener('click', () => {
+        pausado = !pausado;
+        botonPausa.setAttribute('aria-pressed', String(pausado));
+        pausado ? detener() : visible && !document.hidden && iniciar();
+      });
+    }
   }
 </script>

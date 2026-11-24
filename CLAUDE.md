@@ -86,19 +86,21 @@ con carácter y un texto muy legible. Evita fuentes genéricas.
 
 Una página principal (`/`) con secciones y anclas, más una página por propuesta.
 
-1. **Navegación**: logo o nombre de la lista y enlaces a las secciones. En móvil, en una línea o un menú simple.
+1. **Navegación**: Propuestas, Nosotros, Cómo votar y Contacto. Por debajo de 480 px no cabe Contacto y se
+   oculta («Cómo votar» lleva al cierre). Pastillas sólidas, sin efecto de vidrio.
 2. **Inicio (hero)**: nombre de la lista, "Natalie Lazo, candidata a presidenta" y
    "Jhair Torres, candidato a vicepresidente", una frase sobre qué se busca y un botón
    "Ver propuestas". Incluye la idea visual de ramas y merge.
-3. **Propuestas**: todas las propuestas en tarjetas, con:
-   - chips de filtro por eje ("Todas" y los ejes);
+3. **Propuestas**: agrupadas por eje (orden de `ejes.ts`, y dentro de cada eje por `orden`; ver
+   `src/lib/orden.ts`, que también usan anterior/siguiente), con:
+   - chips de filtro por eje ("Todas" y los ejes), en una fila que se desliza en móvil;
    - un buscador que ignore tildes y mayúsculas;
-   - en cada tarjeta: eje (con su punto de color), título, resumen y enlace "Ver propuesta";
+   - un subtítulo por eje (con su nodo sobre la rama) y, en cada tarjeta, título, resumen y "Ver propuesta";
    - un estado vacío amable cuando la búsqueda no encuentra nada.
 4. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
    - **Natalie Lazo (Presidenta)** va primero; ambos tienen el mismo tamaño de avatar y de texto: nombre, apodo "Nat", cargo, ciclo,
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.
-   - **Jhair Torres (Vicepresidente)** va a continuación, con nombre, cargo y descripción.
+   - **Jhair Torres (Vicepresidente)** va a continuación, con el mismo formato: presentación, lista y motivación.
    - Usa foto si existe (`foto`). Si no, muestra un avatar con las iniciales en los colores de la marca.
 5. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
 6. **Marca así**: cómo marcar en la cédula (número 3 y logo).
@@ -208,6 +210,13 @@ merge-sin-conflictos/
    Probar a 360, 768 y 1280 px, y en modo oscuro si se implementa.
 7. **Publicación**: metadatos Open Graph, `og-image`, `npm run build` sin errores
    y despliegue en GitHub Pages.
+
+## Decisiones de diseño (auditoría de noviembre de 2026)
+
+- Fondo plano; el único bloque de color es el cierre azul. Sin degradados decorativos ni `backdrop-blur`.
+- La lluvia de bits se mantiene, con un botón para pausarla (WCAG 2.2.2). No aparece si el sistema pide
+  reducir movimiento.
+- Los nombres del inicio son enlaces a cada perfil (`#perfil-<id>`).
 
 ## Datos pendientes (no inventar)
 

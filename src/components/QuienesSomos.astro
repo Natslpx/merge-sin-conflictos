@@ -20,7 +20,7 @@ const integrantes = await Promise.all(
           const d = entrada.data;
           const esPresidenta = d.cargo === 'Presidenta';
           return (
-            <article class="tarjeta-perfil flex flex-col gap-6 rounded-[2rem] bg-tarjeta/45 p-6 ring-1 ring-blanco/70 backdrop-blur-md md:gap-8 md:p-12">
+            <article id={`perfil-${entrada.id}`} class="tarjeta-perfil scroll-mt-20 flex flex-col gap-6 rounded-[2rem] bg-tarjeta p-6 ring-1 ring-borde md:gap-8 md:p-12">
               <div class="self-center" style={`--c: ${esPresidenta ? 'var(--color-eje-academico)' : 'var(--color-verde)'}`}>
                 {d.foto ? (
                   <Image

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { ordenarPropuestas } from '../lib/orden';
 import Rail from '../components/Rail.astro';
 import Hero from '../components/Hero.astro';
 import ListaPropuestas from '../components/ListaPropuestas.astro';
@@ -9,7 +10,7 @@ import Compromisos from '../components/Compromisos.astro';
 import MarcaAsi from '../components/MarcaAsi.astro';
 import Contacto from '../components/Contacto.astro';
 
-const propuestas = (await getCollection('propuestas')).sort((a, b) => a.data.orden - b.data.orden);
+const propuestas = ordenarPropuestas(await getCollection('propuestas'));
 ---
 
 <Base

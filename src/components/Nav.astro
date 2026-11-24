@@ -1,9 +1,11 @@
 ---
 import { ruta } from '../lib/rutas';
 const enlaces = [
-  { href: ruta('/#propuestas'), texto: 'Propuestas' },
-  { href: ruta('/#quienes-somos'), texto: 'Quiénes somos' },
-  { href: ruta('/#contacto'), texto: 'Contacto' },
+  { href: ruta('/#propuestas'), texto: 'Propuestas', siempre: true },
+  { href: ruta('/#quienes-somos'), texto: 'Nosotros', siempre: true },
+  { href: ruta('/#marca-asi'), texto: 'Cómo votar', siempre: true },
+  // En pantallas angostas no cabe: «Cómo votar» lleva al cierre, justo antes del contacto.
+  { href: ruta('/#contacto'), texto: 'Contacto', siempre: false },
 ];
 ---
 
@@ -16,10 +18,10 @@ const enlaces = [
     <ul class="flex gap-1.5 text-sm font-bold whitespace-nowrap min-[25rem]:gap-2.5 md:gap-4 md:text-base">
       {
         enlaces.map((e) => (
-          <li>
+          <li class:list={[!e.siempre && 'hidden min-[30rem]:block']}>
             <a
               href={e.href}
-              class="flotante flex min-h-11 items-center rounded-full bg-tarjeta/85 px-2.5 ring-1 ring-borde backdrop-blur-md transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:ring-2 hover:ring-verde min-[25rem]:px-4 md:min-h-12 md:px-6"
+              class="flotante flex min-h-11 items-center rounded-full bg-tarjeta px-2.5 ring-1 ring-borde transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:ring-2 hover:ring-verde min-[25rem]:px-4 md:min-h-12 md:px-6"
             >
               {e.texto}
             </a>
