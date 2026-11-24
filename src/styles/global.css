@@ -15,38 +15,21 @@
   --color-blanco: #ffffff;
   --color-negro: #0b0f14;
 
-  /* Roles semánticos (cambian en modo oscuro) */
-  --color-fondo: color-mix(in srgb, var(--color-azul) 3%, white);
-  --color-tarjeta: var(--color-blanco);
-  --color-resaltado: color-mix(in srgb, var(--color-verde) 70%, white);
-  --color-texto: var(--color-negro);
-  --color-texto-suave: color-mix(in srgb, var(--color-negro) 75%, white);
-  --color-enlace: var(--color-azul);
-  --color-borde: color-mix(in srgb, var(--color-negro) 14%, white);
-  --color-superficie: color-mix(in srgb, var(--color-azul) 6%, white);
+  /* Roles semánticos. La página siempre usa tema oscuro. */
+  --color-fondo: color-mix(in srgb, var(--color-azul) 7%, var(--color-negro));
+  --color-tarjeta: color-mix(in srgb, var(--color-azul) 22%, var(--color-negro));
+  --color-resaltado: color-mix(in srgb, var(--color-verde) 45%, var(--color-negro));
+  --color-texto: #eef1f4;
+  --color-texto-suave: color-mix(in srgb, #eef1f4 75%, var(--color-negro));
+  --color-enlace: color-mix(in srgb, var(--color-azul) 45%, white);
+  --color-borde: color-mix(in srgb, #eef1f4 18%, var(--color-negro));
+  --color-superficie: color-mix(in srgb, var(--color-azul) 16%, var(--color-negro));
 
-  /* Ramas de los ejes */
-  --color-eje-academico: var(--color-azul);
+  /* Ramas de los ejes (tonos legibles sobre el fondo oscuro) */
+  --color-eje-academico: color-mix(in srgb, var(--color-azul) 65%, white);
   --color-eje-oportunidades: var(--color-verde);
-  --color-eje-integracion: color-mix(in srgb, var(--color-azul) 62%, white);
-  --color-eje-participacion: color-mix(in srgb, var(--color-verde) 60%, var(--color-negro));
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-fondo: color-mix(in srgb, var(--color-azul) 7%, var(--color-negro));
-    --color-tarjeta: color-mix(in srgb, var(--color-azul) 22%, var(--color-negro));
-    --color-resaltado: color-mix(in srgb, var(--color-verde) 45%, var(--color-negro));
-    --color-texto: #eef1f4;
-    --color-texto-suave: color-mix(in srgb, #eef1f4 75%, var(--color-negro));
-    --color-enlace: color-mix(in srgb, var(--color-azul) 45%, white);
-    --color-borde: color-mix(in srgb, #eef1f4 18%, var(--color-negro));
-    --color-superficie: color-mix(in srgb, var(--color-azul) 16%, var(--color-negro));
-
-    --color-eje-academico: color-mix(in srgb, var(--color-azul) 65%, white);
-    --color-eje-integracion: color-mix(in srgb, var(--color-azul) 25%, white);
-    --color-eje-participacion: color-mix(in srgb, var(--color-verde) 75%, var(--color-negro));
-  }
+  --color-eje-integracion: color-mix(in srgb, var(--color-azul) 25%, white);
+  --color-eje-participacion: color-mix(in srgb, var(--color-verde) 75%, var(--color-negro));
 }
 
 @layer base {
@@ -54,7 +37,7 @@
     font-family: var(--font-texto);
     color: var(--color-texto);
     background-color: var(--color-fondo);
-    color-scheme: light dark;
+    color-scheme: dark;
     accent-color: var(--color-azul);
     caret-color: var(--color-enlace);
     scrollbar-color: var(--color-texto-suave) var(--color-fondo);
@@ -119,24 +102,9 @@
  * --x-* es la posición de cada rama dentro de la columna.
  */
 @layer components {
-  /*
-   * Título de propuesta en el color de su rama (--c). El verde no tiene contraste como texto
-   * sobre fondo claro: en ese caso el título va en negro con un resaltador verde.
-   */
+  /* Título de propuesta en el color de su rama (--c); todos tienen contraste AA sobre el fondo oscuro. */
   .titulo-eje {
     color: var(--c);
-  }
-  .titulo-eje[data-eje='oportunidades'] {
-    color: var(--color-texto);
-    background-image: linear-gradient(transparent 60%, var(--color-verde) 60%, var(--color-verde) 92%, transparent 92%);
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-  }
-  @media (prefers-color-scheme: dark) {
-    .titulo-eje[data-eje='oportunidades'] {
-      color: var(--c);
-      background-image: none;
-    }
   }
 
   /* Cierre: el único bloque de color de la página. */

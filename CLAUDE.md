@@ -73,6 +73,11 @@ hover, pero no agregues nuevos tonos de color.
   con **texto negro**, o para elementos gráficos, nunca para texto sobre blanco.
 - El azul `#034da1` sí sirve para texto sobre blanco, y el texto blanco sobre azul también funciona.
 
+### Tema
+
+La página **siempre** se ve con tema oscuro (no sigue la preferencia del sistema). Los tokens de
+`src/styles/global.css` ya son los oscuros; la imagen para compartir (`og-image`) es aparte.
+
 ### Concepto
 
 El nombre viene de git: cada **eje** de propuestas es una rama que hace *merge* a `main` (la Escuela),
@@ -207,7 +212,7 @@ merge-sin-conflictos/
 4. **Diseño**: aplicar la identidad visual (colores, tipografía, idea de ramas y merge).
 5. **Interacción**: filtro por eje y buscador, enlaces entre propuestas y estados vacíos.
 6. **Revisión**: `/impeccable critique`, `/impeccable audit` y `/impeccable harden`.
-   Probar a 360, 768 y 1280 px, y en modo oscuro si se implementa.
+   Probar a 360, 768 y 1280 px.
 7. **Publicación**: metadatos Open Graph, `og-image`, `npm run build` sin errores
    y despliegue en GitHub Pages.
 

@@ -27,6 +27,9 @@ const imagen = Astro.site ? new URL(ruta('/og-image.png'), Astro.site).href : ru
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Siempre tema oscuro: también la barra del navegador en el celular. -->
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a131e" />
     <link rel="icon" type="image/png" href={favicon.src} />
     <link rel="apple-touch-icon" href={iconoApple.src} />
     <title>{titulo}</title>
