@@ -63,6 +63,21 @@ const altImagen =
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={altImagen} />
     <meta name="twitter:card" content="summary_large_image" />
+    {
+      /*
+       * Contador de visitas (GoatCounter, sin cookies). Panel privado en
+       * https://mergesinconflictos.goatcounter.com. Solo se carga en el sitio publicado
+       * (cuando hay `site`), para que las pruebas en local no se cuenten.
+       */
+      Astro.site && (
+        <script
+          is:inline
+          data-goatcounter="https://mergesinconflictos.goatcounter.com/count"
+          async
+          src="https://gc.zgo.at/count.js"
+        />
+      )
+    }
   </head>
   <body class="flex min-h-dvh flex-col">
     <a

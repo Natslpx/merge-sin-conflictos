@@ -234,6 +234,11 @@ merge-sin-conflictos/
   reducir movimiento.
 - Los nombres del inicio son enlaces a cada perfil (`#perfil-<id>`).
 
+## Visitas
+
+Contador GoatCounter (sin cookies), panel privado de Natalie en https://mergesinconflictos.goatcounter.com.
+El script está en `src/layouts/Base.astro` y solo se incluye al compilar para GitHub Pages (con `site`).
+
 ## Datos pendientes (no inventar)
 
 - [x] Descripción definitiva de Jhair
