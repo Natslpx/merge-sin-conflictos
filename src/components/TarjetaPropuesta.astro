@@ -25,12 +25,15 @@ const textoBusqueda = normalizar(
   data-eje={eje}
   data-texto={textoBusqueda}
   data-col={col}
-  class="commit group relative py-5 md:py-8"
+  class="commit group relative py-5 md:py-8 lg:py-3"
   style={`--x: var(--x-${eje}); --c: ${datosEje.color}`}
 >
-  <span class="nodo top-[calc(1.25rem+0.76rem-var(--r-nodo))] group-hover:bg-(--c) md:top-[calc(2rem+1.18rem-var(--r-nodo))] lg:top-[calc(2rem+0.96rem-var(--r-nodo))]" aria-hidden="true"
+  <span class="nodo top-[calc(1.25rem+0.76rem-var(--r-nodo))] group-hover:bg-(--c) md:top-[calc(2rem+1.18rem-var(--r-nodo))] lg:top-[calc(0.75rem+1.5rem+0.96rem-var(--r-nodo))]" aria-hidden="true"
   ></span>
-  <article class="max-w-[60ch]">
+  <!-- En escritorio cada propuesta va enmarcada, con el borde izquierdo en el color de su rama. -->
+  <article
+    class="max-w-[60ch] lg:h-full lg:max-w-none lg:rounded-2xl lg:border-l-4 lg:border-(--c) lg:bg-tarjeta lg:p-6 lg:ring-1 lg:ring-borde lg:transition-shadow lg:duration-200 lg:group-hover:ring-2 lg:group-hover:ring-(--c)"
+  >
     <h4 class="text-[1.375rem] leading-[1.1] font-extrabold tracking-[-0.02em] text-balance md:text-4xl md:leading-[1.05] lg:text-[1.75rem] lg:leading-[1.1]">
       <span class="titulo-eje" data-eje={eje}>{titulo}</span>
     </h4>
