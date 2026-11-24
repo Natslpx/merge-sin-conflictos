@@ -4,8 +4,6 @@ eje: academico
 resumen: Talleres prácticos de herramientas, lenguajes, frameworks y tecnologías actuales que complementen lo que aprendemos en clase.
 orden: 11
 plazo: "Talleres en cada semestre, de 2027-A a 2028-A"
-inicio: "2027-A"
-recurrente: true
 pasos:
   - "Preguntar en el formulario de inicio de semestre qué herramientas y tecnologías interesan más."
   - "Convocar como ponentes a estudiantes, egresados y profesionales que las usen."

@@ -104,18 +104,16 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
    - un subtítulo por eje (con su nodo sobre la rama) y, en cada tarjeta, título, resumen y "Ver propuesta";
    - un estado vacío amable cuando la búsqueda no encuentra nada;
    - desde 1024 px, dos columnas por eje (el nodo de la derecha se ubica con `data-col`).
-4. **Hoja de ruta** (`HojaDeRuta.astro`): qué empieza en cada semestre (`inicio`) y qué se repite
-   todos los semestres (`recurrente`). Se arma sola desde las propuestas.
-5. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
+4. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
    - **Natalie Lazo (Presidenta)** va primero; ambos tienen el mismo tamaño de avatar y de texto: nombre, apodo "Nat", cargo, ciclo,
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.
    - **Jhair Torres (Vicepresidente)** va a continuación, con el mismo formato: presentación, lista y motivación.
    - Usa foto si existe (`foto`). Si no, muestra un avatar con las iniciales en los colores de la marca.
    - Desde 1024 px, lado a lado. En móvil, la motivación (último párrafo) se pliega tras «Leer por qué postulo».
-6. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
-7. **Marca así**: cómo marcar en la cédula (número 3 y logo).
-8. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
-9. **Footer**: nombre de la lista, EPCC y UNSA.
+5. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
+6. **Marca así**: cómo marcar en la cédula (número 3 y logo).
+7. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
+8. **Footer**: nombre de la lista, EPCC y UNSA.
 
 **Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen (qué), «Por qué lo proponemos»
 (cuerpo del Markdown), «Cómo lo vamos a lograr» (`pasos`) y `plazo`. Incluye enlaces a la propuesta
@@ -154,8 +152,6 @@ resumen: string           # obligatorio, máximo 140 caracteres (valídalo en el
 orden: number             # obligatorio, define el orden en la lista
 plazo: string             # opcional, con los semestres de la gestión, por ejemplo "2027-A"
 pasos: string[]           # opcional, cómo se va a lograr
-inicio: 2027-A | 2027-B | 2028-A   # opcional, semestre en que empieza (hoja de ruta)
-recurrente: boolean       # opcional, true si se repite todos los semestres
 ---
 Por qué la proponemos: el problema o la necesidad que atiende (Markdown).
 No repetir el resumen: el resumen dice qué; el cuerpo, por qué.

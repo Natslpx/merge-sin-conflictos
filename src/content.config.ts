@@ -2,7 +2,6 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { EJES_IDS } from './data/ejes';
-import { SEMESTRES } from './data/gestion';
 
 const propuestas = defineCollection({
   // El nombre del archivo es el slug de la URL.
@@ -17,9 +16,6 @@ const propuestas = defineCollection({
     orden: z.number().int(),
     plazo: z.string().optional(),
     pasos: z.array(z.string()).optional(),
-    // Hoja de ruta: semestre en que empieza y si se repite cada semestre.
-    inicio: z.enum(SEMESTRES).optional(),
-    recurrente: z.boolean().default(false),
   }),
 });
 

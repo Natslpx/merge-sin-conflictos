@@ -4,7 +4,6 @@ eje: oportunidades
 resumen: Un canal oficial con convocatorias, competencias, hackathones y eventos tech para que nadie se pierda una oportunidad.
 orden: 2
 plazo: "Desde el inicio de 2027-A y durante toda la gestión"
-inicio: "2027-A"
 pasos:
   - "Abrir un canal oficial del Centro de Estudiantes solo para oportunidades."
   - "Designar responsables de buscar y verificar convocatorias antes de publicarlas."
