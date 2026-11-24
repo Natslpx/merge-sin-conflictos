@@ -48,7 +48,7 @@ const vecinas = [
       <article class="relative mt-8 md:mt-12" style={`--x: var(--x-${eje}); --c: ${datosEje.color}`}>
         <span class="nodo top-[calc(1.35rem-var(--r-nodo))] bg-(--c) md:top-[calc(2.2rem-var(--r-nodo))]" aria-hidden="true"></span>
         <h1 class="max-w-[22ch] text-[clamp(2rem,8vw,3.75rem)] leading-[1.02] font-extrabold tracking-[-0.025em]">
-          {titulo}
+          <span class="titulo-eje" data-eje={eje}>{titulo}</span>
         </h1>
         <p class="mt-4 flex items-center gap-2 font-bold">
           <span class="inline-block size-2.5 rounded-full bg-(--c)" aria-hidden="true"></span>

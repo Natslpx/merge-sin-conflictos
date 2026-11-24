@@ -169,7 +169,7 @@ merge-sin-conflictos/
 └── src/
     ├── content.config.ts         # colecciones propuestas y equipo
     ├── content/
-    │   ├── propuestas/           # 10 propuestas ya incluidas
+    │   ├── propuestas/           # 14 propuestas ya incluidas
     │   └── equipo/               # natalie-lazo.md y jhair-torres.md
     ├── assets/
     ├── components/
@@ -196,7 +196,7 @@ merge-sin-conflictos/
 ## Fases de construcción
 
 1. **Base**: crear el proyecto Astro y Tailwind, las colecciones con validación y `ejes.ts`.
-   Comprueba que las 10 propuestas cargan sin errores.
+   Comprueba que las 14 propuestas cargan sin errores.
 2. **Impeccable**: instalar, ejecutar `/impeccable init` y `/impeccable shape` para el inicio.
 3. **Estructura**: crear las páginas y los componentes con el contenido real, todavía con un estilo simple.
 4. **Diseño**: aplicar la identidad visual (colores, tipografía, idea de ramas y merge).

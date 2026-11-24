@@ -138,6 +138,26 @@
  * --x-* es la posición de cada rama dentro de la columna.
  */
 @layer components {
+  /*
+   * Título de propuesta en el color de su rama (--c). El verde no tiene contraste como texto
+   * sobre fondo claro: en ese caso el título va en negro con un resaltador verde.
+   */
+  .titulo-eje {
+    color: var(--c);
+  }
+  .titulo-eje[data-eje='oportunidades'] {
+    color: var(--color-texto);
+    background-image: linear-gradient(transparent 60%, var(--color-verde) 60%, var(--color-verde) 92%, transparent 92%);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  @media (prefers-color-scheme: dark) {
+    .titulo-eje[data-eje='oportunidades'] {
+      color: var(--c);
+      background-image: none;
+    }
+  }
+
   /* Cierre: azul que se oscurece, con una luz verde en la esquina. */
   .fondo-contacto {
     background:
