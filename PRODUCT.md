@@ -63,7 +63,7 @@ sin conflictos.
 ## Brand Commitments
 
 - Nombre: **Merge sin conflictos**. Es la **lista 3** (dato confirmado por la candidata).
-- Eslogan propuesto (en uso, a confirmar): «Todas las ramas llevan a la Escuela.»
+- Eslogan oficial: «Unimos ideas, construimos cambios.»
 - Voz: cercana, clara, sin frases de mitin.
 - Colores obligatorios (definidos por la lista): verde `#78c203`, azul `#034da1`, blanco `#ffffff`,
   negro `#0b0f14`. Solo se permiten tonos derivados de estos. El verde nunca va como texto sobre

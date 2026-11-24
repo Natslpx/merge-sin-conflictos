@@ -240,7 +240,7 @@ merge-sin-conflictos/
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.png`)
 - [x] Imagen para compartir (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
-- [ ] Confirmar el eslogan «Todas las ramas llevan a la Escuela.»
+- [x] Eslogan oficial: «Unimos ideas, construimos cambios.» (en el cierre y el footer)
 - [ ] Fecha de la elección (va a cambiar; por ahora se muestra «Fecha por confirmar» en Contacto)
 - [ ] Fecha del debate (será virtual; por ahora «Fecha por confirmar» en Contacto)
 - [x] Repositorio en GitHub: Natslpx/merge-sin-conflictos, con Pages activado (https://natslpx.github.io/merge-sin-conflictos/)
