@@ -76,7 +76,9 @@ const vecinas = [
         {
           plazo && (
             <p class="mt-8 text-lg">
-              <strong>Plazo:</strong> {plazo}
+              <strong>Plazo:</strong>{' '}
+              {/* Los semestres (2027-A) no se parten al cambiar de línea. */}
+              {plazo.split(/(\d{4}-[AB])/).map((parte, i) => (i % 2 ? <span class="whitespace-nowrap">{parte}</span> : parte))}
             </p>
           )
         }

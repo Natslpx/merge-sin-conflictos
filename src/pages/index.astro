@@ -5,6 +5,7 @@ import Rail from '../components/Rail.astro';
 import Hero from '../components/Hero.astro';
 import ListaPropuestas from '../components/ListaPropuestas.astro';
 import QuienesSomos from '../components/QuienesSomos.astro';
+import Compromisos from '../components/Compromisos.astro';
 import MarcaAsi from '../components/MarcaAsi.astro';
 import Contacto from '../components/Contacto.astro';
 
@@ -28,6 +29,7 @@ const propuestas = (await getCollection('propuestas')).sort((a, b) => a.data.ord
     </div>
   </div>
   <QuienesSomos />
+  <Compromisos />
   <MarcaAsi />
   <Contacto />
 </Base>

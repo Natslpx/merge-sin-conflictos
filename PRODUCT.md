@@ -28,7 +28,7 @@ abrir el detalle de cada propuesta si quiere, y termine con un motivo claro para
 
 Compite contra otra(s) lista(s). Lo que el estudiante debe recordar:
 
-1. **Propuestas concretas y realizables**: diez propuestas aterrizadas a la vida real de la Escuela
+1. **Propuestas concretas y realizables**: catorce propuestas aterrizadas a la vida real de la Escuela
    (biblioteca, mesa de tenis, repositorio de exámenes, talleres de inicio de semestre), no promesas
    grandes.
 2. **Enfoque en oportunidades**: programación competitiva, difusión de competencias y hackathones,
@@ -42,14 +42,14 @@ sin conflictos.
 - El enlace se comparte por WhatsApp e Instagram: la vista previa (Open Graph) es la primera
   impresión.
 - Lectura rápida en móvil, a menudo con una mano y con poco tiempo.
-- La lista tiene dos cargos: **Natalie Lazo** (Presidenta, "Nat", 6.º ciclo) y **Jhair Torres**
-  (Vicepresidente). No hay más integrantes.
-- Diez propuestas en cuatro ejes: Académico, Oportunidades y talento, Integración y bienestar,
+- La lista tiene dos cargos: **Natalie Lazo** (Presidenta, "Nat", tercer año) y **Jhair Torres**
+  (Vicepresidente, tercer año). No hay más integrantes.
+- Catorce propuestas en cuatro ejes: Académico, Oportunidades y talento, Integración y bienestar,
   Participación y comunicación.
 
 ## Capabilities and Constraints
 
-- Sitio **estático** en Astro + Tailwind, desplegado en Vercel o Netlify. Sin backend, base de
+- Sitio **estático** en Astro + Tailwind, desplegado en GitHub Pages con GitHub Actions. Sin backend, base de
   datos, panel de administración ni buzón de sugerencias.
 - El texto de las propuestas vive solo en `src/content/propuestas/*.md`; el equipo en
   `src/content/equipo/*.md`. Los componentes no llevan texto de propuestas escrito a mano.
@@ -57,9 +57,8 @@ sin conflictos.
 - Página principal con secciones (inicio, propuestas, quiénes somos, contacto) y una página por
   propuesta con enlaces a la anterior y la siguiente.
 - Todo el texto visible en español de Perú.
-- **Abierto (no inventar):** fecha de la elección; redes y correo de la lista; descripción
-  definitiva y ciclo de Jhair; fotos; plazos y pasos de las propuestas; logo; URL definitiva del
-  sitio. Mientras falten, se muestran como `PENDIENTE: …`.
+- **Abierto (no inventar):** fecha de la elección (aún no existe; no se muestra marcador en el sitio
+  público) e imagen para compartir (og-image). Contacto: solo el correo nlazop@unsa.edu.pe.
 
 ## Brand Commitments
 
@@ -74,12 +73,20 @@ sin conflictos.
 
 ## Evidence on Hand
 
-- 10 propuestas reales con título, eje, resumen y texto: `src/content/propuestas/`.
+- 14 propuestas reales con título, eje, resumen y texto: `src/content/propuestas/`.
 - Presentación y logros reales de Natalie: 2 años en el Centro de Estudiantes, monitora de la
   Defensoría Universitaria, organización de 3 Semanas de la Computación, voluntaria de la Cruz Roja
   desde 2023, finalista del Data Fest BCP 2026 como líder de equipo: `src/content/equipo/natalie-lazo.md`.
-- Descripción **provisional** de Jhair: `src/content/equipo/jhair-torres.md`.
-- No hay fotos, logo, testimonios, cifras ni fecha de elección. No se inventan.
+- Presentación definitiva de Jhair y fotos de ambos: `src/content/equipo/`, `src/assets/equipo/`.
+- Logo oficial: `src/assets/campana/logo.png`.
+- Pasos y plazos de las 14 propuestas, y compromisos de gestión (`Compromisos.astro`): redactados
+  como borrador a pedido de la candidata; los valida ella.
+- La cédula mostrará el número 3 y el logo (confirmado por la candidata).
+- La gestión dura de 2027-A a 2028-A (tres semestres); los plazos usan esos semestres.
+- El Centro de Estudiantes no maneja fondos: no prometer rendición de gastos.
+- Lo que requiere espacios o servicios de la Escuela se redacta como «gestionar/coordinar con la
+  Dirección», nunca como hecho garantizado.
+- No hay testimonios, cifras ni fecha de elección. No se inventan.
 
 ## Product Principles
 

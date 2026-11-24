@@ -1,0 +1,80 @@
+---
+// Compromisos de gestión y formas de participar. Texto breve: es lo que el estudiante puede exigirnos.
+const compromisos = [
+  {
+    titulo: 'Rendir cuentas cada semestre',
+    texto: 'Publicaremos qué propuestas avanzaron, cuáles no y por qué.',
+  },
+  {
+    titulo: 'Escuchar antes de decidir',
+    texto: 'Al inicio de cada semestre abriremos un formulario y publicaremos sus resultados.',
+  },
+  {
+    titulo: 'Dejar bases',
+    texto: 'Documentaremos lo que hagamos para que la siguiente gestión pueda continuarlo.',
+  },
+];
+
+const participar = [
+  'Responder el formulario de inicio de semestre.',
+  'Sumarte al Club de Programación Competitiva.',
+  'Aportar material al repositorio académico.',
+  'Dictar un taller de inicio de semestre si estás en ciclos superiores.',
+  'Escribirnos cuando quieras al correo de contacto.',
+];
+---
+
+<section id="compromisos" aria-labelledby="titulo-compromisos" class="scroll-mt-20 py-16 md:py-24">
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-[1.3fr_1fr] md:gap-16 md:px-8">
+    <div>
+      <h2 id="titulo-compromisos" class="text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl">
+        Nuestros compromisos
+      </h2>
+      <p class="mt-3 max-w-[44ch] text-lg text-texto-suave">Lo que puedes exigirnos durante toda la gestión, de <span class="whitespace-nowrap">2027-A</span> a <span class="whitespace-nowrap">2028-A</span>.</p>
+      <ol class="mt-8 space-y-6">
+        {
+          compromisos.map((c, i) => (
+            <li class="flex gap-4">
+              <span
+                class="grid size-10 shrink-0 place-items-center rounded-full bg-verde font-titular text-lg font-extrabold text-negro"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <p class="font-titular text-xl leading-tight font-bold">{c.titulo}</p>
+                <p class="mt-1 text-texto-suave md:text-lg">{c.texto}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="md:border-l-2 md:border-borde md:pl-10">
+      <h3 class="text-2xl font-extrabold md:text-3xl">Cómo puedes participar</h3>
+      <ul class="lista-participar mt-6 space-y-3 md:text-lg">
+        {participar.map((p) => <li>{p}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .lista-participar li {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  /* Mismo nodo en anillo que los logros del perfil. */
+  .lista-participar li::before {
+    content: '';
+    position: absolute;
+    left: 0.125rem;
+    top: 0.4em;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    border: 3px solid var(--color-eje-academico);
+    background: var(--color-fondo);
+  }
+</style>

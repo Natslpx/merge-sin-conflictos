@@ -25,12 +25,16 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
     class="hero mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl flex-col items-center px-4 pt-6 text-center md:px-8 md:pt-8"
   >
     <span class="min-h-0 flex-1" aria-hidden="true"></span>
+    <!-- Contexto: quien llega desde un enlace reenviado debe saber qué elección es. -->
+    <p class="mb-2 max-w-[40ch] text-xs font-bold tracking-[0.08em] text-enlace uppercase md:mb-4 md:max-w-none md:text-sm">
+      Elecciones del Centro de Estudiantes · Ciencia de la Computación UNSA
+    </p>
     <h1
       id="titulo-inicio"
       class="leading-[1.02] font-extrabold tracking-[-0.03em] [font-variation-settings:'opsz'_96]"
     >
-      <span class="block text-[clamp(3.1rem,14.5vw,7rem)] leading-[0.98]"><span class="resaltado">Merge sin conflictos</span></span>
-      <span class="mt-9 flex items-center justify-center gap-[0.22em] text-[clamp(2.4rem,10.5vw,4.75rem)] md:mt-12">
+      <span class="block text-[clamp(3.1rem,14.5vw,6rem)] leading-[0.98]"><span class="resaltado">Merge sin conflictos</span></span>
+      <span class="mt-4 flex items-center justify-center gap-[0.22em] text-[clamp(2.2rem,10vw,3.75rem)] md:mt-6">
         Somos lista
         <span
           class="inline-grid size-[1.15em] place-items-center rounded-full bg-verde leading-none text-negro"
@@ -39,19 +43,24 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
       </span>
     </h1>
 
+    <!-- Visión: tomada de las presentaciones de Natalie y Jhair. -->
+    <p class="mt-3 max-w-[32ch] text-base leading-snug font-bold text-balance min-[25rem]:text-lg md:mt-4 md:text-xl">
+      Un Centro de Estudiantes más cercano, con más oportunidades y una comunidad más unida.
+    </p>
+
     <!-- main: el logo. De él salen las ramas. -->
-    <div class="logo-entrada relative z-10 mt-8 md:mt-8">
+    <div class="logo-entrada relative z-10 mt-4 md:mt-6">
       <Image
         src={logo}
         alt="Logo de Merge sin conflictos: un personaje naranja con sombrero arequipeño que levanta el pulgar."
         width={560}
         loading="eager"
         fetchpriority="high"
-        class="logo-main h-auto w-56 min-[25rem]:w-64 md:w-[min(16rem,24svh)]"
+        class="logo-main h-auto w-[min(10rem,19svh)] min-[25rem]:w-[min(12rem,22svh)] md:w-[min(11rem,16svh)]"
       />
     </div>
 
-    <svg class="ramas-hero h-10 w-full max-w-lg md:h-14" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" aria-hidden="true">
+    <svg class="ramas-hero h-10 w-full max-w-lg md:h-12" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" aria-hidden="true">
       <path d="M50 0 V40" stroke="var(--color-texto)" />
       {
         equipo.map((integrante, i) => {

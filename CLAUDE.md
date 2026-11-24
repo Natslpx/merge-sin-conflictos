@@ -100,8 +100,10 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.
    - **Jhair Torres (Vicepresidente)** va a continuación, con nombre, cargo y descripción.
    - Usa foto si existe (`foto`). Si no, muestra un avatar con las iniciales en los colores de la marca.
-5. **Contacto**: redes y correo (`PENDIENTE`). Cierre con un llamado a votar.
-6. **Footer**: nombre de la lista, EPCC y UNSA.
+5. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
+6. **Marca así**: cómo marcar en la cédula (número 3 y logo).
+7. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
+8. **Footer**: nombre de la lista, EPCC y UNSA.
 
 **Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen y el texto completo
 (cuerpo del Markdown). Si existen, también `pasos` y `plazo`. Incluye enlaces a la propuesta
@@ -147,7 +149,7 @@ nombre: string            # nombre completo
 nombre_corto: string      # cómo se muestra en titulares, por ejemplo "Natalie Lazo"
 apodo: string             # opcional, por ejemplo "Nat"
 cargo: Presidenta | Vicepresidente
-ciclo: string             # opcional, por ejemplo "6.º ciclo"
+ciclo: string             # opcional, por ejemplo "Tercer año"
 orden: number
 foto: string              # opcional, ruta relativa al .md, p. ej. ../../assets/equipo/natalie-lazo.jpg
 provisional: boolean      # opcional; true muestra "PENDIENTE: descripción definitiva"
@@ -212,7 +214,12 @@ merge-sin-conflictos/
 - [x] Año de Jhair (tercer año)
 - [x] Foto de Natalie (`src/assets/equipo/natalie-lazo.png`)
 - [x] Foto de Jhair (`src/assets/equipo/jhair-torres.jpg`)
-- [ ] Plazos y pasos de cada propuesta (opcional)
+- [x] Plazos y pasos de cada propuesta (borrador redactado; pendiente de validación)
+- [x] Visión y compromisos (borrador redactado; pendiente de validación)
+- [x] Ambos están en tercer año
+- [x] La cédula muestra el número 3 y el logo
+- [x] Gestión: de 2027-A a 2028-A. El Centro no maneja fondos; lo que depende de la Dirección se
+  redacta como gestión, no como promesa
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.jpg`)
 - [x] Imagen para compartir (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
