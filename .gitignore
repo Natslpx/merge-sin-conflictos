@@ -1,0 +1,26 @@
+# build
+dist/
+.astro/
+
+# dependencias
+node_modules/
+
+# logs
+npm-debug.log*
+
+# entorno
+.env
+.env.*
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# despliegue
+.vercel/
+.netlify/
+
+# impeccable: material de trabajo (se guarda solo el boceto elegido)
+.impeccable/decision/*
+!.impeccable/decision/grafo.html
+.impeccable/hook.cache.json

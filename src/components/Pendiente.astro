@@ -1,0 +1,21 @@
+---
+// Marcador visible de dato faltante. Nunca se inventa el contenido.
+interface Props {
+  as?: 'span' | 'p';
+}
+const { as: Tag = 'span' } = Astro.props;
+---
+
+<Tag class="pendiente">PENDIENTE: <slot /></Tag>
+
+<style>
+  .pendiente {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border: 2px dashed currentColor;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: inherit;
+  }
+</style>

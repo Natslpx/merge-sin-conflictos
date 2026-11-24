@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Rail from '../components/Rail.astro';
+import Hero from '../components/Hero.astro';
+import ListaPropuestas from '../components/ListaPropuestas.astro';
+import QuienesSomos from '../components/QuienesSomos.astro';
+import Contacto from '../components/Contacto.astro';
+
+const propuestas = (await getCollection('propuestas')).sort((a, b) => a.data.orden - b.data.orden);
+---
+
+<Base
+  titulo="Merge sin conflictos · Centro de Estudiantes EPCC"
+  descripcion="Natalie Lazo y Jhair Torres: las propuestas de Merge sin conflictos para el Centro de Estudiantes de Ciencia de la Computación, UNSA."
+>
+  <div class="mx-auto max-w-6xl px-4 md:px-8">
+    <div class="historial">
+      <Rail merge />
+      <Hero totalPropuestas={propuestas.length} />
+      <ListaPropuestas propuestas={propuestas} />
+    </div>
+  </div>
+  <QuienesSomos />
+  <Contacto />
+</Base>

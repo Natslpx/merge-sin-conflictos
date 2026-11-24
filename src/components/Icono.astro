@@ -1,0 +1,32 @@
+---
+// Íconos dibujados con un solo trazo de 2 px, para que todos tengan el mismo peso.
+interface Props {
+  nombre: 'abajo' | 'derecha' | 'izquierda' | 'check' | 'compartir' | 'buscar';
+  class?: string;
+}
+const { nombre, class: clase } = Astro.props;
+const trazos: Record<Props['nombre'], string> = {
+  abajo: 'M12 5v14M6 13l6 6 6-6',
+  derecha: 'M5 12h14M13 6l6 6-6 6',
+  izquierda: 'M19 12H5M11 6l-6 6 6 6',
+  check: 'M5 12.5l4.5 4.5L19 7.5',
+  compartir: 'M12 15V4M7.5 8.5L12 4l4.5 4.5M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13',
+  buscar: 'M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5L20 20',
+};
+---
+
+<svg
+  viewBox="0 0 24 24"
+  width="20"
+  height="20"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  class={clase}
+>
+  <path d={trazos[nombre]}></path>
+</svg>

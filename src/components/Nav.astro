@@ -1,0 +1,30 @@
+---
+import Marca from './Marca.astro';
+
+const enlaces = [
+  { href: '/#propuestas', texto: 'Propuestas' },
+  { href: '/#quienes-somos', texto: 'Quiénes somos' },
+  { href: '/#contacto', texto: 'Contacto' },
+];
+---
+
+<header>
+  <nav aria-label="Principal" class="mx-auto flex max-w-6xl items-center justify-between gap-x-3 px-4 md:px-8">
+    <a href="/" class="flex min-h-14 shrink-0 items-center gap-2.5 font-titular text-lg font-extrabold tracking-[-0.01em]">
+      <Marca />
+      <span class="sr-only min-[30rem]:not-sr-only">Merge sin conflictos</span>
+      <span class="sr-only">, inicio</span>
+    </a>
+    <ul class="flex gap-x-4 text-[0.9375rem] font-bold md:gap-x-7">
+      {
+        enlaces.map((e) => (
+          <li>
+            <a href={e.href} class="flex min-h-14 items-center underline decoration-transparent hover:decoration-current">
+              {e.texto}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

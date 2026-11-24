@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+}
+
+const { titulo, descripcion } = Astro.props;
+const url = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+// La imagen para compartir (og:image) se agrega en la fase 7.
+---
+
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content="Merge sin conflictos" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    {url && <meta property="og:url" content={url} />}
+    {url && <link rel="canonical" href={url} />}
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-fondo focus:px-4 focus:py-3 focus:font-bold"
+    >
+      Saltar al contenido
+    </a>
+    <Nav />
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

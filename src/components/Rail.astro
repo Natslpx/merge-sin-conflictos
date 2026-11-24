@@ -1,0 +1,113 @@
+---
+/**
+ * Columna de ramas del historial. Con `merge`, arriba dibuja el nodo de main y las cuatro
+ * ramas que salen de él; sin `merge`, las ramas recorren la columna de arriba abajo.
+ * `activo` atenúa las ramas de los otros ejes (el filtro lo cambia en el navegador).
+ */
+import { ejes, type EjeId } from '../data/ejes';
+
+interface Props {
+  merge?: boolean;
+  activo?: EjeId;
+}
+
+const { merge = false, activo } = Astro.props;
+
+// Coordenadas en px de la bifurcación, para la columna angosta (móvil) y la ancha.
+const variantes = [
+  { clase: 'bifurcacion-sm', ancho: 56, alto: 120, cx: 28, cy: 50, r: 15, trazo: 4, xs: [10, 22, 34, 46] },
+  { clase: 'bifurcacion-lg', ancho: 112, alto: 196, cx: 56, cy: 106, r: 26, trazo: 6, xs: [20, 44, 68, 92] },
+];
+---
+
+<div class:list={['rail', merge && 'rail-merge']} aria-hidden="true" data-rail>
+  {
+    merge &&
+      variantes.map((v) => (
+        <svg
+          class:list={['bifurcacion', v.clase]}
+          width={v.ancho}
+          height={v.alto}
+          viewBox={`0 0 ${v.ancho} ${v.alto}`}
+          fill="none"
+        >
+          {ejes.map((eje, i) => {
+            const x = v.xs[i]!;
+            return (
+              <path
+                d={`M${v.cx} ${v.cy} C${v.cx} ${v.cy + (v.alto - v.cy) * 0.6} ${x} ${v.cy + (v.alto - v.cy) * 0.35} ${x} ${v.alto}`}
+                stroke={eje.color}
+                stroke-width={v.trazo}
+                stroke-linecap="round"
+                pathLength="1"
+                data-rama={eje.id}
+                class:list={[activo && activo !== eje.id && 'tenue']}
+              />
+            );
+          })}
+          <circle cx={v.cx} cy={v.cy} r={v.r} fill="var(--color-texto)" />
+          <circle cx={v.cx} cy={v.cy} r={v.r * 0.4} fill="var(--color-verde)" />
+        </svg>
+      ))
+  }
+  {
+    ejes.map((eje) => (
+      <span
+        class:list={['rama', activo && activo !== eje.id && 'tenue']}
+        data-rama={eje.id}
+        style={`--x: var(--x-${eje.id}); --c: ${eje.color}`}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .rail-merge {
+    --inicio-ramas: 120px;
+  }
+  .bifurcacion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+  .bifurcacion-lg {
+    display: none;
+  }
+  @media (min-width: 48rem) {
+    .rail-merge {
+      --inicio-ramas: 196px;
+    }
+    .bifurcacion-sm {
+      display: none;
+    }
+    .bifurcacion-lg {
+      display: block;
+    }
+  }
+
+  /* El único momento animado: las ramas salen de main al cargar. */
+  @media (prefers-reduced-motion: no-preference) {
+    .bifurcacion path {
+      stroke-dasharray: 1;
+      animation: brotar 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .bifurcacion path:nth-of-type(2) {
+      animation-delay: 60ms;
+    }
+    .bifurcacion path:nth-of-type(3) {
+      animation-delay: 120ms;
+    }
+    .bifurcacion path:nth-of-type(4) {
+      animation-delay: 180ms;
+    }
+    @keyframes brotar {
+      from {
+        stroke-dashoffset: 1;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+</style>

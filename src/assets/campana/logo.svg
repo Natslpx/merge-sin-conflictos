@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <!-- LOGO PROVISIONAL: reemplazar por el logo oficial de la lista (mismo nombre de archivo o actualizar la ruta). -->
+  <rect width="240" height="240" rx="40" fill="#034da1"/>
+  <g fill="none" stroke-width="18" stroke-linecap="round">
+    <path d="M78 196V140C78 108 120 104 120 76" stroke="#ffffff"/>
+    <path d="M162 196V140C162 108 120 104 120 76" stroke="#78c203"/>
+  </g>
+  <circle cx="120" cy="62" r="30" fill="#0b0f14"/>
+  <circle cx="120" cy="62" r="12" fill="#78c203"/>
+</svg>

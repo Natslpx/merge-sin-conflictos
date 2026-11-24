@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import { ejes } from '../data/ejes';
+import Icono from './Icono.astro';
+import Pendiente from './Pendiente.astro';
+import logo from '../assets/campana/logo.svg';
+import comoMarcar from '../assets/campana/como-marcar.svg';
+
+interface Props {
+  totalPropuestas: number;
+}
+const { totalPropuestas } = Astro.props;
+---
+
+<section id="inicio" aria-labelledby="titulo-inicio" class="pt-8 pb-12 md:pt-16 md:pb-20">
+  <h1
+    id="titulo-inicio"
+    class="text-[clamp(2.5rem,12vw,6rem)] leading-[0.92] font-extrabold tracking-[-0.03em] [font-variation-settings:'opsz'_96]"
+  >
+    Merge sin conflictos
+  </h1>
+
+  <div class="mt-6 grid gap-10 md:mt-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-14">
+    <div>
+      <ul class="space-y-1 text-lg md:text-xl">
+        <li><strong class="font-bold">Natalie Lazo</strong>, candidata a presidenta</li>
+        <li><strong class="font-bold">Jhair Torres</strong>, candidato a vicepresidente</li>
+      </ul>
+
+      <p class="mt-4 max-w-[38ch] text-texto-suave md:text-lg">
+        Lista candidata al Centro de Estudiantes de Ciencia de la Computación, UNSA. {totalPropuestas} propuestas
+        concretas para la Escuela, en {ejes.length} ejes.
+      </p>
+
+      <div class="mt-7 flex items-center gap-3 sm:gap-4">
+        <Image src={logo} alt="Logo de Merge sin conflictos" width={72} height={72} class="size-12 shrink-0 sm:size-16 md:size-[4.5rem]" />
+        <div>
+          <p class="flex items-center gap-2 font-titular text-xl leading-none font-extrabold whitespace-nowrap sm:text-2xl md:text-3xl">
+            Somos la lista
+            <span
+              class="inline-grid size-9 place-items-center rounded-full bg-texto text-fondo sm:size-10 md:size-12"
+              aria-hidden="true">3</span
+            >
+            <span class="sr-only">3</span>
+          </p>
+          <p class="mt-1.5 font-titular text-lg leading-snug font-semibold md:text-xl">Todas las ramas llevan a la Escuela.</p>
+        </div>
+      </div>
+      <p class="mt-3"><Pendiente>logo oficial (el actual es provisional)</Pendiente></p>
+
+      <a
+        href="#propuestas"
+        class="group mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-verde px-6 text-lg font-bold text-negro transition-[filter] hover:brightness-95 md:mt-9"
+      >
+        Ver propuestas
+        <Icono nombre="abajo" class="transition-transform duration-200 ease-out group-hover:translate-y-0.5" />
+      </a>
+    </div>
+
+    <figure class="max-w-[22rem] rounded-2xl border-2 border-borde bg-fondo p-4" aria-labelledby="titulo-marcar">
+      <Image
+        src={comoMarcar}
+        alt="Ejemplo de cédula: la casilla de la lista 3, con el logo de Merge sin conflictos marcado con una X."
+        width={400}
+        height={260}
+        class="w-full rounded-lg"
+      />
+      <figcaption class="mt-4">
+        <p id="titulo-marcar" class="font-titular text-xl font-extrabold">Cómo marcar</p>
+        <p class="mt-1">Busca el número 3 y nuestro logo en la cédula, y marca ahí.</p>
+        <p class="mt-3"><Pendiente>forma oficial de marcar y cédula real</Pendiente></p>
+      </figcaption>
+    </figure>
+  </div>
+</section>

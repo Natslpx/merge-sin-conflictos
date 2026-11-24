@@ -1,0 +1,137 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { ejes } from '../data/ejes';
+import TarjetaPropuesta from './TarjetaPropuesta.astro';
+import Icono from './Icono.astro';
+
+interface Props {
+  propuestas: CollectionEntry<'propuestas'>[];
+}
+
+const { propuestas } = Astro.props;
+const chip =
+  'chip inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-borde px-4 text-sm font-bold transition-colors hover:border-texto aria-pressed:border-texto aria-pressed:bg-texto aria-pressed:text-fondo';
+---
+
+<section id="propuestas" aria-labelledby="titulo-propuestas" class="scroll-mt-4 pb-16 md:pb-24" data-lista-propuestas>
+  <h2 id="titulo-propuestas" class="text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl">Propuestas</h2>
+  <p class="mt-3 max-w-[46ch] text-lg text-texto-suave">
+    Cada eje es una rama. Cada propuesta, un cambio concreto que hace merge a la Escuela.
+  </p>
+
+  <!-- Los controles aparecen solo con JavaScript; sin él se ven todas las propuestas. -->
+  <div data-controles hidden class="mt-8 space-y-5">
+    <div role="group" aria-label="Filtrar por eje" class="flex flex-wrap gap-2">
+      <button type="button" class={chip} data-filtro="todas" aria-pressed="true">
+        <Icono nombre="check" class="check size-4" />
+        Todas
+      </button>
+      {
+        ejes.map((eje) => (
+          <button type="button" class={chip} data-filtro={eje.id} aria-pressed="false">
+            <Icono nombre="check" class="check size-4" />
+            <span class="punto inline-block size-3 rounded-full border-[3px]" style={`border-color:${eje.color}`} aria-hidden="true" />
+            {eje.nombre}
+          </button>
+        ))
+      }
+    </div>
+    <div class="max-w-md">
+      <label for="buscar-propuesta" class="block text-sm font-bold">Buscar propuesta</label>
+      <div class="relative mt-1.5">
+        <Icono nombre="buscar" class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-texto-suave" />
+        <input
+          id="buscar-propuesta"
+          type="search"
+          autocomplete="off"
+          enterkeyhint="search"
+          placeholder="Por ejemplo: biblioteca"
+          class="min-h-12 w-full rounded-xl border-2 border-borde bg-fondo pr-3 pl-10 text-base transition-colors placeholder:text-texto-suave hover:border-texto focus:border-enlace"
+          data-buscador
+        />
+      </div>
+    </div>
+    <p class="sr-only" role="status" aria-live="polite" data-estado></p>
+  </div>
+
+  <ul class="mt-4" data-lista>
+    {propuestas.map((propuesta) => <TarjetaPropuesta propuesta={propuesta} />)}
+  </ul>
+
+  <div data-vacio hidden class="mt-6 max-w-[52ch] rounded-2xl border-2 border-dashed border-borde p-6">
+    <p class="font-titular text-xl font-bold">
+      Ninguna propuesta coincide<span data-vacio-consulta></span>.
+    </p>
+    <p class="mt-2 text-texto-suave">Prueba con otra palabra, como «talleres» o «biblioteca», o mira todos los ejes.</p>
+    <button
+      type="button"
+      data-limpiar
+      class="mt-5 inline-flex min-h-11 items-center rounded-full bg-verde px-5 font-bold text-negro transition-[filter] hover:brightness-95"
+    >
+      Ver todas las propuestas
+    </button>
+  </div>
+</section>
+
+<style>
+  .chip :global(.check) {
+    display: none;
+  }
+  .chip[aria-pressed='true'] :global(.check) {
+    display: block;
+  }
+  .chip[aria-pressed='true'] .punto {
+    display: none;
+  }
+</style>
+
+<script>
+  import { normalizar } from '../lib/texto';
+
+  const raiz = document.querySelector<HTMLElement>('[data-lista-propuestas]');
+  if (raiz) {
+    const controles = raiz.querySelector<HTMLElement>('[data-controles]')!;
+    const chips = [...raiz.querySelectorAll<HTMLButtonElement>('[data-filtro]')];
+    const buscador = raiz.querySelector<HTMLInputElement>('[data-buscador]')!;
+    const items = [...raiz.querySelectorAll<HTMLElement>('[data-propuesta]')];
+    const vacio = raiz.querySelector<HTMLElement>('[data-vacio]')!;
+    const vacioConsulta = raiz.querySelector<HTMLElement>('[data-vacio-consulta]')!;
+    const estado = raiz.querySelector<HTMLElement>('[data-estado]')!;
+    const limpiar = raiz.querySelector<HTMLButtonElement>('[data-limpiar]')!;
+    // Las ramas de la columna del historial (inicio + lista).
+    const ramas = [...document.querySelectorAll<SVGElement | HTMLElement>('[data-rail] [data-rama]')];
+
+    let eje = 'todas';
+
+    const aplicar = () => {
+      const consulta = normalizar(buscador.value);
+      let visibles = 0;
+      for (const item of items) {
+        const coincide =
+          (eje === 'todas' || item.dataset.eje === eje) && (!consulta || item.dataset.texto!.includes(consulta));
+        item.hidden = !coincide;
+        if (coincide) visibles++;
+      }
+      for (const rama of ramas) rama.classList.toggle('tenue', eje !== 'todas' && rama.dataset.rama !== eje);
+      vacio.hidden = visibles > 0;
+      vacioConsulta.textContent = buscador.value.trim() ? ` con «${buscador.value.trim()}»` : '';
+      estado.textContent = visibles === 1 ? '1 propuesta encontrada' : `${visibles} propuestas encontradas`;
+    };
+
+    const elegirEje = (nuevo: string) => {
+      eje = nuevo;
+      for (const chip of chips) chip.setAttribute('aria-pressed', String(chip.dataset.filtro === eje));
+      aplicar();
+    };
+
+    chips.forEach((chip) => chip.addEventListener('click', () => elegirEje(chip.dataset.filtro!)));
+    buscador.addEventListener('input', aplicar);
+    limpiar.addEventListener('click', () => {
+      buscador.value = '';
+      elegirEje('todas');
+      buscador.focus();
+    });
+
+    controles.hidden = false;
+  }
+</script>
