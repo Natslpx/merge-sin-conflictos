@@ -3,11 +3,11 @@ nombre: Natalie Marleny Lazo Paxi
 nombre_corto: Natalie Lazo
 apodo: Nat
 cargo: Presidenta
-ciclo: 6.º ciclo
+ciclo: Tercer año
 orden: 1
 foto: ../../assets/equipo/natalie-lazo.png
 ---
-Soy Natalie Lazo, Nat, estudiante de 6.º ciclo de Ciencia de la Computación. Me apasiona liderar, resolver problemas y trabajar en equipo. Disfruto convertir ideas en proyectos reales y, sobre todo, ayudar a otros a crecer, algo que aprendí como voluntaria.
+Soy Natalie Lazo, Nat, estudiante de tercer año de Ciencia de la Computación. Me apasiona liderar, resolver problemas y trabajar en equipo. Disfruto convertir ideas en proyectos reales y, sobre todo, ayudar a otros a crecer, algo que aprendí como voluntaria.
 
 - Fui parte del Centro de Estudiantes de la escuela durante 2 años, así que conozco la escuela desde adentro.
 - Hoy soy monitora de la Defensoría Universitaria en representación de la escuela.

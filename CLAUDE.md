@@ -208,10 +208,10 @@ merge-sin-conflictos/
 
 ## Datos pendientes (no inventar)
 
-- [ ] Descripción definitiva de Jhair (la actual es provisional y genérica)
-- [ ] Ciclo de Jhair
+- [x] Descripción definitiva de Jhair
+- [x] Año de Jhair (tercer año)
 - [x] Foto de Natalie (`src/assets/equipo/natalie-lazo.png`)
-- [ ] Foto de Jhair (opcional)
+- [x] Foto de Jhair (`src/assets/equipo/jhair-torres.jpg`)
 - [ ] Plazos y pasos de cada propuesta (opcional)
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.jpg`)
