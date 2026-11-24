@@ -4,6 +4,8 @@ eje: academico
 resumen: Un Club de Programación Competitiva con sesiones de práctica, preparación para competencias y concursos internos cada mes.
 orden: 1
 plazo: "Club en marcha en 2027-A; concursos internos cada mes hasta 2028-A"
+inicio: "2027-A"
+recurrente: true
 pasos:
   - "Formar un equipo coordinador con estudiantes que ya tengan experiencia en competencias."
   - "Gestionar con la Escuela un aula o laboratorio con horario fijo para las sesiones."

@@ -32,10 +32,11 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
   >
     <span class="min-h-0 flex-1" aria-hidden="true"></span>
     <!-- Contexto: quien llega desde un enlace reenviado debe saber qué elección es. -->
-    <p class="mb-2 max-w-[40ch] text-xs font-bold tracking-[0.08em] text-enlace uppercase md:mb-4 md:max-w-none md:text-sm">
+    <p data-sin-bits class="mb-2 max-w-[40ch] text-xs font-bold tracking-[0.08em] text-enlace uppercase md:mb-4 md:max-w-none md:text-sm">
       Elecciones del Centro de Estudiantes · Ciencia de la Computación UNSA
     </p>
     <h1
+      data-sin-bits
       id="titulo-inicio"
       class="leading-[1.02] font-extrabold tracking-[-0.03em] [font-variation-settings:'opsz'_96]"
     >
@@ -49,9 +50,9 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
       </span>
     </h1>
 
-    <!-- Visión: tomada de las presentaciones de Natalie y Jhair. -->
-    <p class="mt-3 max-w-[32ch] text-base leading-snug font-bold text-balance min-[25rem]:text-lg md:mt-4 md:max-w-none md:text-xl">
-      Un Centro de Estudiantes más cercano, con más oportunidades y una comunidad más unida.
+    <!-- Eslogan oficial de la lista. -->
+    <p data-sin-bits class="mt-3 max-w-[32ch] font-titular text-lg leading-snug font-bold text-balance min-[25rem]:text-xl md:mt-4 md:max-w-none md:text-2xl">
+      Unimos ideas, construimos cambios.
     </p>
 
     <!-- main: el logo. De él salen las ramas. -->
@@ -90,7 +91,7 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
                 <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-tarjeta px-3 py-3 font-titular text-lg leading-tight font-bold text-balance ring-[3px] ring-(--c) transition-[box-shadow,transform] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:ring-[5px] md:text-xl">
                   {integrante.data.nombre_corto}
                 </span>
-                <span class="mt-2 text-sm font-bold underline decoration-transparent decoration-2 underline-offset-4 transition-colors group-hover:decoration-current md:text-base">
+                <span data-sin-bits class="mt-2 text-sm font-bold underline decoration-transparent decoration-2 underline-offset-4 transition-colors group-hover:decoration-current md:text-base">
                   {integrante.data.cargo}
                 </span>
               </a>
@@ -215,7 +216,26 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
         // No todas las columnas llevan bits: deja aire para que no sea una pared.
         if (Math.random() < 0.55) columnas.push(nueva(x, false));
       }
+      medirTextos();
     };
+
+    // Zonas de texto del inicio: los bits no se dibujan encima, para que todo se lea limpio.
+    type Zona = { x1: number; y1: number; x2: number; y2: number };
+    let zonas: Zona[] = [];
+    const MARGEN = 8;
+    const medirTextos = () => {
+      const base = lienzo.getBoundingClientRect();
+      zonas = [...document.querySelectorAll<HTMLElement>('[data-sin-bits]')].map((el) => {
+        const r = el.getBoundingClientRect();
+        return {
+          x1: r.left - base.left - MARGEN,
+          y1: r.top - base.top - MARGEN,
+          x2: r.right - base.left + MARGEN,
+          y2: r.bottom - base.top + MARGEN,
+        };
+      });
+    };
+    const tapado = (x: number, y: number) => zonas.some((z) => x > z.x1 && x < z.x2 && y > z.y1 && y < z.y2);
 
     const dibujar = () => {
       ctx.clearRect(0, 0, ancho, alto);
@@ -224,7 +244,7 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
         ctx.fillStyle = c.verde ? '#78c203' : '#6f9fe0';
         for (let i = 0; i < c.largo; i++) {
           const y = c.y - i * TAM;
-          if (y < -TAM || y > alto + TAM) continue;
+          if (y < -TAM || y > alto + TAM || tapado(c.x, y)) continue;
           // La cabeza es la más visible; la cola se apaga.
           ctx.globalAlpha = fuerza * (1 - i / c.largo) * (i === 0 ? 1.4 : 1);
           ctx.fillText(c.bits[i]!, c.x, y);
@@ -269,6 +289,8 @@ const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-
 
     medir();
     dibujar();
+    // Las fuentes cambian el tamaño de los textos al cargar: se vuelven a medir.
+    document.fonts?.ready.then(medirTextos);
 
     let visible = true;
     new IntersectionObserver(([e]) => {

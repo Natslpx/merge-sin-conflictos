@@ -93,33 +93,43 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
 
 1. **Navegación**: Propuestas, Nosotros, Cómo votar y Contacto. Por debajo de 480 px no cabe Contacto y se
    oculta («Cómo votar» lleva al cierre). Pastillas sólidas, sin efecto de vidrio.
-2. **Inicio (hero)**: nombre de la lista, "Natalie Lazo, candidata a presidenta" y
-   "Jhair Torres, candidato a vicepresidente", una frase sobre qué se busca y un botón
-   "Ver propuestas". Incluye la idea visual de ramas y merge.
+2. **Inicio (hero)**: contexto de la elección, nombre de la lista, «Somos lista 3», el eslogan, el logo,
+   Natalie Lazo (Presidenta) y Jhair Torres (Vicepresidente) como enlaces a sus perfiles, y el botón
+   "Ver propuestas". Incluye la idea visual de ramas y merge. Los textos con `data-sin-bits` quedan
+   libres de la lluvia de bits.
 3. **Propuestas**: agrupadas por eje (orden de `ejes.ts`, y dentro de cada eje por `orden`; ver
    `src/lib/orden.ts`, que también usan anterior/siguiente), con:
    - chips de filtro por eje ("Todas" y los ejes), en una fila que se desliza en móvil;
    - un buscador que ignore tildes y mayúsculas;
    - un subtítulo por eje (con su nodo sobre la rama) y, en cada tarjeta, título, resumen y "Ver propuesta";
-   - un estado vacío amable cuando la búsqueda no encuentra nada.
-4. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
+   - un estado vacío amable cuando la búsqueda no encuentra nada;
+   - desde 1024 px, dos columnas por eje (el nodo de la derecha se ubica con `data-col`).
+4. **Hoja de ruta** (`HojaDeRuta.astro`): qué empieza en cada semestre (`inicio`) y qué se repite
+   todos los semestres (`recurrente`). Se arma sola desde las propuestas.
+5. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
    - **Natalie Lazo (Presidenta)** va primero; ambos tienen el mismo tamaño de avatar y de texto: nombre, apodo "Nat", cargo, ciclo,
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.
    - **Jhair Torres (Vicepresidente)** va a continuación, con el mismo formato: presentación, lista y motivación.
    - Usa foto si existe (`foto`). Si no, muestra un avatar con las iniciales en los colores de la marca.
-5. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
-6. **Marca así**: cómo marcar en la cédula (número 3 y logo).
-7. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
-8. **Footer**: nombre de la lista, EPCC y UNSA.
+   - Desde 1024 px, lado a lado. En móvil, la motivación (último párrafo) se pliega tras «Leer por qué postulo».
+6. **Compromisos**: compromisos de gestión y cómo participar (`Compromisos.astro`).
+7. **Marca así**: cómo marcar en la cédula (número 3 y logo).
+8. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
+9. **Footer**: nombre de la lista, EPCC y UNSA.
 
 **Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen (qué), «Por qué lo proponemos»
 (cuerpo del Markdown), «Cómo lo vamos a lograr» (`pasos`) y `plazo`. Incluye enlaces a la propuesta
-anterior y la siguiente, y un botón para volver a todas.
+anterior y la siguiente, «Más propuestas de <eje>», un botón para volver a todas y para compartir.
+Solo se dibuja la rama de su eje.
 
 **404** (`src/pages/404.astro`): página para enlaces rotos, con enlaces a las propuestas y al inicio.
 
-Agrega metadatos para compartir (Open Graph: título, descripción e imagen) en todas las páginas,
-porque el enlace se va a compartir por WhatsApp.
+Metadatos para compartir (Open Graph) en todas las páginas. Cada propuesta tiene su imagen en
+`public/og/propuestas/<slug>.jpg`; **al agregar una propuesta o cambiar un título, ejecuta
+`node scripts/og-image/generar.mjs`** (si falta la imagen, se usa la general).
+
+**Compartir** (`BotonCompartir.astro`): sin JavaScript, enlace a WhatsApp. En el celular abre el menú
+de compartir del sistema; en todos los equipos agrega «Copiar enlace».
 
 ---
 
@@ -144,6 +154,8 @@ resumen: string           # obligatorio, máximo 140 caracteres (valídalo en el
 orden: number             # obligatorio, define el orden en la lista
 plazo: string             # opcional, con los semestres de la gestión, por ejemplo "2027-A"
 pasos: string[]           # opcional, cómo se va a lograr
+inicio: 2027-A | 2027-B | 2028-A   # opcional, semestre en que empieza (hoja de ruta)
+recurrente: boolean       # opcional, true si se repite todos los semestres
 ---
 Por qué la proponemos: el problema o la necesidad que atiende (Markdown).
 No repetir el resumen: el resumen dice qué; el cuerpo, por qué.
@@ -240,7 +252,7 @@ merge-sin-conflictos/
 - [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.png`)
 - [x] Imagen para compartir (`public/og-image.png`, se regenera con `node scripts/og-image/generar.mjs`)
-- [x] Eslogan oficial: «Unimos ideas, construimos cambios.» (en el cierre y el footer)
+- [x] Eslogan oficial: «Unimos ideas, construimos cambios.» (inicio, cierre, footer e imagen para compartir)
 - [ ] Fecha de la elección (va a cambiar; por ahora se muestra «Fecha por confirmar» en Contacto)
 - [ ] Fecha del debate (será virtual; por ahora «Fecha por confirmar» en Contacto)
 - [x] Repositorio en GitHub: Natslpx/merge-sin-conflictos, con Pages activado (https://natslpx.github.io/merge-sin-conflictos/)

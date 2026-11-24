@@ -5,6 +5,10 @@ import Footer from '../components/Footer.astro';
 import { getImage } from 'astro:assets';
 import logo from '../assets/campana/logo.png';
 import { ruta } from '../lib/rutas';
+// Precarga de las dos fuentes (solo el subconjunto latino, el único que se descarga) para que el
+// titular del inicio aparezca con su tipografía desde el primer momento.
+import fuenteTitular from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url';
+import fuenteTexto from '@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-normal.woff2?url';
 
 // Ícono de la pestaña y de acceso directo, generados desde el logo de la campaña.
 const favicon = await getImage({ src: logo, width: 64, format: 'png' });
@@ -15,13 +19,20 @@ interface Props {
   descripcion: string;
   /** false en páginas que no deben indexarse ni tener URL canónica (404). */
   indexar?: boolean;
+  /** Imagen para compartir propia (ruta dentro de public/) y su texto alternativo. */
+  imagen?: { ruta: string; alt: string };
 }
 
-const { titulo, descripcion, indexar = true } = Astro.props;
+const { titulo, descripcion, indexar = true, imagen: imagenPropia } = Astro.props;
 const url = indexar && Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 // Imagen para compartir (public/og-image.png, 1200×630). Se genera con scripts/og-image/generar.mjs.
 // WhatsApp y las redes necesitan la URL absoluta, que existe al compilar para GitHub Pages.
-const imagen = Astro.site ? new URL(ruta('/og-image.png'), Astro.site).href : ruta('/og-image.png');
+// Cada propuesta trae la suya (public/og/propuestas/<slug>.jpg); el resto usa la general.
+const rutaImagen = imagenPropia?.ruta ?? '/og-image.png';
+const imagen = Astro.site ? new URL(ruta(rutaImagen), Astro.site).href : ruta(rutaImagen);
+const tipoImagen = rutaImagen.endsWith('.jpg') ? 'image/jpeg' : 'image/png';
+const altImagen =
+  imagenPropia?.alt ?? 'Merge sin conflictos, lista 3: Natalie Lazo, presidenta, y Jhair Torres, vicepresidente.';
 ---
 
 <!doctype html>
@@ -32,6 +43,8 @@ const imagen = Astro.site ? new URL(ruta('/og-image.png'), Astro.site).href : ru
     <!-- Siempre tema oscuro: también la barra del navegador en el celular. -->
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0a131e" />
+    <link rel="preload" href={fuenteTitular} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fuenteTexto} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/png" href={favicon.src} />
     <link rel="apple-touch-icon" href={iconoApple.src} />
     <title>{titulo}</title>
@@ -45,10 +58,10 @@ const imagen = Astro.site ? new URL(ruta('/og-image.png'), Astro.site).href : ru
     {url && <link rel="canonical" href={url} />}
     {!indexar && <meta name="robots" content="noindex" />}
     <meta property="og:image" content={imagen} />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content={tipoImagen} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Merge sin conflictos, lista 3: Natalie Lazo, presidenta, y Jhair Torres, vicepresidente." />
+    <meta property="og:image:alt" content={altImagen} />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body class="flex min-h-dvh flex-col">

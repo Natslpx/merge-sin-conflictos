@@ -9,9 +9,12 @@ import { ejes, type EjeId } from '../data/ejes';
 interface Props {
   merge?: boolean;
   activo?: EjeId;
+  /** Con `activo`, dibuja solo la rama de ese eje (página de detalle). */
+  solo?: boolean;
 }
 
-const { merge = false, activo } = Astro.props;
+const { merge = false, activo, solo = false } = Astro.props;
+const ramas = solo && activo ? ejes.filter((eje) => eje.id === activo) : ejes;
 
 // Coordenadas en px de la bifurcación, para la columna angosta (móvil) y la ancha.
 const variantes = [
@@ -52,7 +55,7 @@ const variantes = [
       ))
   }
   {
-    ejes.map((eje) => (
+    ramas.map((eje) => (
       <span
         class:list={['rama', activo && activo !== eje.id && 'tenue']}
         data-rama={eje.id}

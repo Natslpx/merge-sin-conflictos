@@ -4,6 +4,8 @@ eje: integracion
 resumen: Mañanas deportivas, paseos y apoyo a nuestros representantes en la Liga Universitaria para fortalecer el compañerismo.
 orden: 10
 plazo: "Un calendario por semestre, de 2027-A a 2028-A"
+inicio: "2027-A"
+recurrente: true
 pasos:
   - "Publicar al inicio de cada semestre un calendario de actividades recreativas."
   - "Organizar mañanas deportivas y paseos estudiantiles."

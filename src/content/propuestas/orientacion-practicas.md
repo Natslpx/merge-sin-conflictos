@@ -4,6 +4,8 @@ eje: oportunidades
 resumen: Información y recomendaciones sobre prácticas preprofesionales, CV, entrevistas, LinkedIn y procesos de selección.
 orden: 12
 plazo: "Desde 2027-A; charlas en cada semestre"
+inicio: "2027-A"
+recurrente: true
 pasos:
   - "Difundir las convocatorias de prácticas y sus requisitos por el canal de oportunidades."
   - "Organizar charlas sobre CV, LinkedIn y entrevistas con egresados y estudiantes que ya hicieron prácticas."

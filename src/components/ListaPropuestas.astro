@@ -76,13 +76,13 @@ const chip =
                 <span class="nodo top-[calc(0.65lh-var(--r-nodo))] bg-(--c)" aria-hidden="true" />
                 <span class="mr-2 inline-block size-2.5 rounded-full bg-(--c) align-[0.05em]" aria-hidden="true" />
                 {eje.nombre}{' '}
-                <span class="font-normal tracking-normal whitespace-nowrap text-texto-suave normal-case">
+                <span class="font-normal tracking-normal whitespace-nowrap text-texto-suave normal-case" data-conteo>
                   · {grupo.length} {grupo.length === 1 ? 'propuesta' : 'propuestas'}
                 </span>
               </h3>
-              <ul>
-                {grupo.map((propuesta) => (
-                  <TarjetaPropuesta propuesta={propuesta} />
+              <ul class="[--col-gap:3rem] lg:grid lg:grid-cols-2 lg:gap-x-(--col-gap)">
+                {grupo.map((propuesta, i) => (
+                  <TarjetaPropuesta propuesta={propuesta} col={i % 2} />
                 ))}
               </ul>
             </section>
@@ -158,7 +158,15 @@ const chip =
         if (coincide) visibles++;
       }
       // Un grupo sin propuestas visibles se oculta entero (con su subtítulo).
-      for (const grupo of grupos) grupo.hidden = !grupo.querySelector('[data-propuesta]:not([hidden])');
+      for (const grupo of grupos) {
+        const visiblesGrupo = [...grupo.querySelectorAll<HTMLElement>('[data-propuesta]:not([hidden])')];
+        grupo.hidden = visiblesGrupo.length === 0;
+        // En escritorio, la columna de cada tarjeta visible decide dónde va su nodo.
+        visiblesGrupo.forEach((item, i) => (item.dataset.col = String(i % 2)));
+        const conteo = grupo.querySelector<HTMLElement>('[data-conteo]');
+        const n = visiblesGrupo.length;
+        if (conteo) conteo.textContent = `· ${n} ${n === 1 ? 'propuesta' : 'propuestas'}`;
+      }
       for (const rama of ramas) rama.classList.toggle('tenue', eje !== 'todas' && rama.dataset.rama !== eje);
       vacio.hidden = visibles > 0;
       vacioConsulta.textContent = buscador.value.trim() ? ` con «${buscador.value.trim()}»` : '';

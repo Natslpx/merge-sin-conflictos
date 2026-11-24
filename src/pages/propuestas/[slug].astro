@@ -8,12 +8,18 @@ import Icono from '../../components/Icono.astro';
 import BotonCompartir from '../../components/BotonCompartir.astro';
 import { ejePorId } from '../../data/ejes';
 import { ordenarPropuestas } from '../../lib/orden';
+import { existsSync } from 'node:fs';
 
 export const getStaticPaths = (async () => {
   const propuestas = ordenarPropuestas(await getCollection('propuestas'));
   return propuestas.map((propuesta, i) => ({
     params: { slug: propuesta.id },
-    props: { propuesta, anterior: propuestas[i - 1], siguiente: propuestas[i + 1] },
+    props: {
+      propuesta,
+      anterior: propuestas[i - 1],
+      siguiente: propuestas[i + 1],
+      mismoEje: propuestas.filter((p) => p.data.eje === propuesta.data.eje && p.id !== propuesta.id),
+    },
   }));
 }) satisfies GetStaticPaths;
 
@@ -21,22 +27,32 @@ interface Props {
   propuesta: CollectionEntry<'propuestas'>;
   anterior?: CollectionEntry<'propuestas'>;
   siguiente?: CollectionEntry<'propuestas'>;
+  mismoEje: CollectionEntry<'propuestas'>[];
 }
 
-const { propuesta, anterior, siguiente } = Astro.props;
+const { propuesta, anterior, siguiente, mismoEje } = Astro.props;
 const { titulo, resumen, eje, pasos, plazo } = propuesta.data;
 const datosEje = ejePorId[eje];
 const { Content } = await render(propuesta);
+// Imagen para compartir de esta propuesta. Si aún no se generó (propuesta nueva), se usa la general.
+const rutaImagen = `/og/propuestas/${propuesta.id}.jpg`;
+const imagen = existsSync(`public${rutaImagen}`)
+  ? { ruta: rutaImagen, alt: `Propuesta de Merge sin conflictos, lista 3: ${titulo}.` }
+  : undefined;
 const vecinas = [
   { entrada: anterior, rotulo: 'Anterior', rel: 'prev' },
   { entrada: siguiente, rotulo: 'Siguiente', rel: 'next' },
 ] as const;
 ---
 
-<Base titulo={`${titulo} · Merge sin conflictos`} descripcion={resumen}>
+<Base
+  titulo={`${titulo} · Merge sin conflictos`}
+  descripcion={resumen}
+  imagen={imagen}
+>
   <div class="mx-auto max-w-6xl px-4 md:px-8">
     <div class="historial pb-16 md:pb-24">
-      <Rail activo={eje} />
+      <Rail activo={eje} solo />
 
       <a
         href={ruta('/#propuestas')}
@@ -96,6 +112,29 @@ const vecinas = [
           />
         </div>
       </article>
+
+      {
+        mismoEje.length > 0 && (
+          <section class="mt-14 max-w-3xl" aria-labelledby="titulo-mismo-eje">
+            <h2 id="titulo-mismo-eje" class="text-2xl font-extrabold">
+              Más propuestas de {datosEje.nombre}
+            </h2>
+            <ul class="mt-3">
+              {mismoEje.map((p) => (
+                <li>
+                  <a
+                    href={ruta(`/propuestas/${p.id}`)}
+                    class="group flex min-h-11 items-center gap-2 py-1 font-bold text-enlace underline decoration-transparent underline-offset-4 hover:decoration-current"
+                  >
+                    {p.data.titulo}
+                    <Icono nombre="derecha" class="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
 
       <nav aria-label="Otras propuestas" class="mt-14 grid max-w-3xl gap-3 sm:grid-cols-2">
         {

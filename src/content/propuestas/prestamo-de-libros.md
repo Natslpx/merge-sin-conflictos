@@ -4,6 +4,7 @@ eje: academico
 resumen: Reactivar y difundir el préstamo por horas de los libros de la biblioteca de la Escuela para que todos accedan a ellos.
 orden: 6
 plazo: "Gestión durante 2027-A"
+inicio: "2027-A"
 pasos:
   - "Reunirnos con la Dirección de la Escuela para conocer qué se necesita para reactivar el servicio."
   - "Proponer un horario de atención y reglas para el préstamo por horas."

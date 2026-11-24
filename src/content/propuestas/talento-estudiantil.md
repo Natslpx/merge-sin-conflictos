@@ -4,6 +4,7 @@ eje: oportunidades
 resumen: Difundir y reconocer los proyectos, logros, investigaciones y participaciones de los estudiantes de la Escuela.
 orden: 3
 plazo: "Desde 2027-A y durante toda la gestión"
+inicio: "2027-A"
 pasos:
   - "Abrir un formulario permanente para que cada estudiante registre sus proyectos, logros y participaciones."
   - "Publicar esos logros en los canales del Centro de Estudiantes, con el permiso de cada autor."

@@ -4,6 +4,7 @@ eje: integracion
 resumen: Habilitar la mesa de tenis para recreación e integración, con horarios ordenados que no choquen con las clases.
 orden: 4
 plazo: "2027-A"
+inicio: "2027-A"
 pasos:
   - "Coordinar con la Dirección de la Escuela el uso del espacio y de la mesa."
   - "Revisar el estado de la mesa y de los implementos."

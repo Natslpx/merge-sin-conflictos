@@ -14,25 +14,26 @@ const integrantes = await Promise.all(
   <div class="mx-auto max-w-6xl px-4 md:px-8">
     <h2 id="titulo-quienes" class="text-center text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl"><span class="resaltado">Quiénes somos</span></h2>
 
-    <div class="mx-auto mt-10 max-w-3xl space-y-8 md:mt-14 md:space-y-12">
+    <!-- Desde 1024 px, la fórmula va lado a lado: mismo formato y mismo peso para los dos. -->
+    <div class="mx-auto mt-10 grid max-w-3xl gap-8 md:mt-14 md:gap-12 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-8">
       {
         integrantes.map(({ entrada, Contenido }) => {
           const d = entrada.data;
           const esPresidenta = d.cargo === 'Presidenta';
           return (
-            <article id={`perfil-${entrada.id}`} class="tarjeta-perfil scroll-mt-20 flex flex-col gap-6 rounded-[2rem] bg-tarjeta p-6 ring-1 ring-borde md:gap-8 md:p-12">
+            <article id={`perfil-${entrada.id}`} class="tarjeta-perfil scroll-mt-20 flex flex-col gap-6 rounded-[2rem] bg-tarjeta p-6 ring-1 ring-borde md:gap-8 md:p-12 lg:p-10">
               <div class="self-center" style={`--c: ${esPresidenta ? 'var(--color-eje-academico)' : 'var(--color-verde)'}`}>
                 {d.foto ? (
                   <Image
                     src={d.foto}
                     alt={`Foto de ${d.nombre_corto}`}
                     width={576}
-                    class="size-52 rounded-full bg-tarjeta object-cover object-[50%_18%] ring-4 ring-(--c) ring-offset-4 ring-offset-transparent shadow-[0_16px_36px_-14px_rgb(3_77_161/0.5)] md:size-72"
+                    class="size-44 rounded-full bg-tarjeta object-cover object-[50%_18%] ring-4 ring-(--c) ring-offset-4 ring-offset-transparent shadow-[0_16px_36px_-14px_rgb(3_77_161/0.5)] min-[25rem]:size-52 md:size-60"
                   />
                 ) : (
                   <div
                     class:list={[
-                      'grid size-52 place-items-center rounded-full font-titular text-7xl font-extrabold tracking-[-0.02em] ring-4 ring-(--c) ring-offset-4 ring-offset-tarjeta shadow-[0_16px_36px_-14px_rgb(3_77_161/0.5)] md:size-72 md:text-8xl',
+                      'grid size-44 min-[25rem]:size-52 place-items-center rounded-full font-titular text-7xl font-extrabold tracking-[-0.02em] ring-4 ring-(--c) ring-offset-4 ring-offset-tarjeta shadow-[0_16px_36px_-14px_rgb(3_77_161/0.5)] md:size-60 md:text-8xl',
                       esPresidenta ? 'bg-azul text-blanco' : 'bg-verde text-negro',
                     ]}
                     aria-hidden="true"
@@ -56,7 +57,7 @@ const integrantes = await Promise.all(
                     {d.provisional && <Pendiente>descripción definitiva (la actual es provisional)</Pendiente>}
                   </p>
                 )}
-                <div class="presentacion mt-4 space-y-4 md:text-lg">
+                <div class="presentacion mt-4 space-y-4 md:text-lg" data-presentacion>
                   <Contenido />
                 </div>
               </div>
@@ -73,6 +74,18 @@ const integrantes = await Promise.all(
     box-shadow:
       0 1px 2px rgb(3 77 161 / 0.06),
       0 24px 48px -28px rgb(3 77 161 / 0.45);
+  }
+  .presentacion :global(.leer-mas) {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    font-weight: 700;
+    color: var(--color-enlace);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .presentacion :global(.leer-mas[hidden]) {
+    display: none;
   }
   .presentacion :global(ul) {
     display: grid;
@@ -97,3 +110,32 @@ const integrantes = await Promise.all(
     background: var(--color-fondo);
   }
 </style>
+
+<script>
+  // En el celular, la motivación (último párrafo, después de la lista) se pliega tras un botón
+  // para acortar los perfiles. Sin JavaScript, o desde 768 px, se ve todo.
+  const angosto = window.matchMedia('(max-width: 47.99rem)');
+  document.querySelectorAll<HTMLElement>('[data-presentacion]').forEach((caja, n) => {
+    const motivacion = caja.lastElementChild;
+    if (!(motivacion instanceof HTMLParagraphElement) || motivacion.previousElementSibling?.tagName !== 'UL') return;
+    motivacion.id ||= `motivacion-${n}`;
+    const boton = document.createElement('button');
+    boton.type = 'button';
+    boton.className = 'leer-mas';
+    boton.textContent = 'Leer por qué postulo';
+    boton.setAttribute('aria-controls', motivacion.id);
+    caja.append(boton);
+    const plegar = (plegado: boolean) => {
+      motivacion.hidden = plegado;
+      boton.hidden = !plegado;
+      boton.setAttribute('aria-expanded', String(!plegado));
+    };
+    boton.addEventListener('click', () => {
+      plegar(false);
+      motivacion.tabIndex = -1;
+      motivacion.focus();
+    });
+    plegar(angosto.matches);
+    angosto.addEventListener('change', (e) => plegar(e.matches));
+  });
+</script>
