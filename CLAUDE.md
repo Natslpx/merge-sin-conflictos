@@ -103,10 +103,8 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
    - un buscador que ignore tildes y mayúsculas;
    - un subtítulo por eje (con su nodo sobre la rama) y, en cada tarjeta, título, resumen y "Ver propuesta";
    - un estado vacío amable cuando la búsqueda no encuentra nada;
-   - **escritorio**: cada eje es una columna con su propia rama y sus propuestas como commits (2×2 desde
-     1024 px; 4 columnas desde 1280 px, con main bajando al centro y repartiéndose en las cuatro ramas).
-     Los chips se ocultan (cada eje ya es una columna) y las columnas sin coincidencias se quedan con
-     el aviso «Ninguna coincide con la búsqueda». El móvil no cambia.
+   - desde 1024 px, dos columnas por eje (el nodo de la derecha se ubica con `data-col`), y cada
+     propuesta enmarcada con el borde izquierdo en el color de su rama. El móvil no lleva marco.
 4. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
    - **Natalie Lazo (Presidenta)** va primero; ambos tienen el mismo tamaño de avatar y de texto: nombre, apodo "Nat", cargo, ciclo,
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.

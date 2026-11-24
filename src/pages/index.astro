@@ -18,13 +18,11 @@ const propuestas = ordenarPropuestas(await getCollection('propuestas'));
   descripcion="Natalie Lazo y Jhair Torres: las propuestas de Merge sin conflictos para el Centro de Estudiantes de Ciencia de la Computación, UNSA."
 >
   <Hero />
-  <div class="mx-auto max-w-6xl px-4 md:px-8 xl:max-w-7xl">
+  <div class="mx-auto max-w-6xl px-4 md:px-8">
     <!-- main baja del logo, gira y entra al nodo donde nacen las ramas de las propuestas. -->
-    <!-- Desde 1024 px, main sigue recta por el centro hasta un nodo sobre el título de Propuestas. -->
     <div class="conector relative h-16 md:h-24" aria-hidden="true">
       <span class="codo-a"></span>
       <span class="codo-b"></span>
-      <span class="recta"></span>
     </div>
     <div class="historial">
       <Rail merge />
@@ -48,44 +46,6 @@ const propuestas = ordenarPropuestas(await getCollection('propuestas'));
       --t: 6px;
       --nx: 56px;
       --r: 2rem;
-    }
-  }
-  .recta {
-    display: none;
-  }
-  @media (min-width: 64rem) {
-    .codo-a,
-    .codo-b {
-      display: none;
-    }
-    .recta {
-      display: block;
-      position: absolute;
-      top: 0;
-      bottom: 1.25rem;
-      left: calc(50% - var(--t) / 2);
-      width: var(--t);
-      background: var(--color-texto);
-    }
-    /* Nodo de merge, como el de la columna de ramas en móvil. */
-    .recta::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -14px;
-      width: 28px;
-      height: 28px;
-      translate: -50% 0;
-      border-radius: 50%;
-      background: var(--color-verde);
-      box-shadow: 0 0 0 6px var(--color-texto);
-    }
-    /* La columna de ramas de la izquierda no se usa: cada eje lleva su propia rama. */
-    .historial {
-      padding-left: 0;
-    }
-    .historial > :global([data-rail]) {
-      display: none;
     }
   }
   .codo-a,
