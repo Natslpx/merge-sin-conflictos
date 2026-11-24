@@ -10,4 +10,4 @@ pasos:
   - "Hacer talleres prácticos en los que cada participante construya algo pequeño."
   - "Subir los materiales de cada taller al repositorio académico."
 ---
-Promover talleres prácticos sobre herramientas, lenguajes de programación, frameworks y tecnologías de interés, complementando la formación académica con conocimientos aplicados.
+El plan de estudios da bases sólidas, pero muchas herramientas que se usan en prácticas y proyectos, como frameworks, control de versiones o servicios en la nube, se aprenden por cuenta propia. Los talleres prácticos acortan ese camino y responden a lo que los estudiantes quieren aprender.

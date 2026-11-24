@@ -11,4 +11,4 @@ pasos:
   - "Enviar un recordatorio antes de que cierre cada convocatoria."
   - "Recibir y difundir las oportunidades que compartan estudiantes y docentes."
 ---
-Crear un canal de difusión oficial para compartir convocatorias, competencias, hackathones, eventos tecnológicos y otras oportunidades académicas, promoviendo activamente la participación de los estudiantes.
+Muchas veces nos enteramos de una competencia, una beca o un hackathon cuando la convocatoria ya cerró, o la información llega a unos grupos y a otros no. Un solo canal confiable permite que cualquier estudiante, de cualquier año, se entere a tiempo y pueda postular.

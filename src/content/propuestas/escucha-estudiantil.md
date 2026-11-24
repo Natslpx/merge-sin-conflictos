@@ -9,4 +9,4 @@ pasos:
   - "Publicar un resumen de los resultados."
   - "Responder qué haremos con los temas más pedidos y usarlos para priorizar las actividades."
 ---
-Implementar formularios de sugerencias y recomendaciones al inicio de cada semestre, con el objetivo de recoger las necesidades, inquietudes y propuestas de los estudiantes, fortaleciendo una comunicación abierta y constante con el Centro de Estudiantes.
+Las prioridades del Centro de Estudiantes deben salir de lo que necesitan los estudiantes, no solo de lo que imagina la directiva. Preguntar cada semestre permite ajustar las actividades y que cualquiera haga llegar una idea o una queja sin esperar a una asamblea.

@@ -10,4 +10,4 @@ pasos:
   - "Programar talleres cortos en las primeras semanas de clases."
   - "Subir los materiales de cada taller al repositorio académico."
 ---
-Organizar talleres breves al inicio de cada semestre, orientados a reforzar conocimientos, compartir herramientas y brindar recomendaciones para afrontar los cursos. Estos serán impartidos por estudiantes de ciclos superiores y egresados de la escuela.
+Empezar un curso nuevo cuesta menos cuando alguien que ya lo llevó te cuenta qué esperar y qué conviene preparar. Estos talleres aprovechan la experiencia de ciclos superiores y egresados para que nadie empiece el semestre a ciegas.

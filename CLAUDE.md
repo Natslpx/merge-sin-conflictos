@@ -105,8 +105,8 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
 7. **Contacto**: correo nlazop@unsa.edu.pe. Cierre con un llamado a votar.
 8. **Footer**: nombre de la lista, EPCC y UNSA.
 
-**Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen y el texto completo
-(cuerpo del Markdown). Si existen, también `pasos` y `plazo`. Incluye enlaces a la propuesta
+**Detalle de propuesta** (`/propuestas/[slug]`): eje, título, resumen (qué), «Por qué lo proponemos»
+(cuerpo del Markdown), «Cómo lo vamos a lograr» (`pasos`) y `plazo`. Incluye enlaces a la propuesta
 anterior y la siguiente, y un botón para volver a todas.
 
 Agrega metadatos para compartir (Open Graph: título, descripción e imagen) en todas las páginas,
@@ -133,10 +133,11 @@ titulo: string            # obligatorio
 eje: academico | oportunidades | integracion | participacion   # obligatorio
 resumen: string           # obligatorio, máximo 140 caracteres (valídalo en el esquema)
 orden: number             # obligatorio, define el orden en la lista
-plazo: string             # opcional, por ejemplo "Primer semestre"
+plazo: string             # opcional, con los semestres de la gestión, por ejemplo "2027-A"
 pasos: string[]           # opcional, cómo se va a lograr
 ---
-Texto completo de la propuesta (Markdown).
+Por qué la proponemos: el problema o la necesidad que atiende (Markdown).
+No repetir el resumen: el resumen dice qué; el cuerpo, por qué.
 ```
 
 El nombre del archivo es el `slug` de la URL.

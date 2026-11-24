@@ -10,4 +10,4 @@ pasos:
   - "Hacer sesiones de revisión de CV entre estudiantes."
   - "Reunir las recomendaciones en una guía disponible para toda la Escuela."
 ---
-Compartir información y recomendaciones sobre prácticas preprofesionales, elaboración de CV, entrevistas laborales, LinkedIn y preparación para procesos de selección.
+Buscar las primeras prácticas preprofesionales genera muchas dudas: dónde postular, cómo armar el CV o qué esperar en una entrevista. Quienes ya pasaron por ese proceso pueden ahorrarles ese camino a quienes vienen detrás.

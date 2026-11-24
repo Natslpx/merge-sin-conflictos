@@ -11,4 +11,4 @@ pasos:
   - "Organizar un concurso interno cada mes y publicar los resultados."
   - "Preparar y acompañar a los equipos que representen a la Escuela en competencias."
 ---
-Impulsar la creación del Club de Programación Competitiva, un espacio dedicado a desarrollar habilidades de resolución de problemas y algoritmia mediante sesiones de práctica, preparación para competencias y concursos internos mensuales.
+La programación competitiva entrena la algoritmia que piden los cursos, las entrevistas técnicas y competencias como el ICPC. Muchas veces quien quiere prepararse lo hace solo. Un club con práctica constante y concursos internos da ritmo y compañía, y es el camino para formar equipos que representen a la Escuela.

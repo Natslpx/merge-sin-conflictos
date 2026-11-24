@@ -9,4 +9,4 @@ pasos:
   - "Organizar mañanas deportivas y paseos estudiantiles."
   - "Apoyar a nuestros representantes en la Liga Universitaria con difusión y organización."
 ---
-Dar continuidad e impulsar actividades recreativas, deportivas y de integración, como mañanas deportivas y paseos estudiantiles, además de apoyar la participación de nuestros representantes en la Liga Universitaria, fomentando el compañerismo y el sentido de pertenencia a la EPCC.
+La carrera es exigente y es fácil pasar años sin conocer a compañeros de otras promociones. Las actividades recreativas ya existen: queremos mantenerlas, hacerlas más frecuentes y acompañar a quienes nos representan en la Liga Universitaria.

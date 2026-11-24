@@ -10,4 +10,4 @@ pasos:
   - "Recibir aportes de los estudiantes y revisarlos antes de publicarlos."
   - "Publicar solo material que se pueda compartir, respetando lo que los docentes no autoricen."
 ---
-Crear y mantener un repositorio digital colaborativo que reúna recursos académicos de utilidad para los estudiantes, como sílabos, guías de laboratorio, apuntes, exámenes de ciclos anteriores y otros materiales de estudio.
+Cada ciclo buscamos sílabos, apuntes y exámenes anteriores en grupos y carpetas que se pierden al cambiar de promoción. Un repositorio ordenado y abierto conserva ese material y lo pone al alcance de todos por igual, no solo de quien tiene el contacto correcto.

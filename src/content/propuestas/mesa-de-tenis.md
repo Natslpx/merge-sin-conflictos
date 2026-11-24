@@ -10,4 +10,4 @@ pasos:
   - "Definir horarios fuera de las clases y reglas de uso y cuidado."
   - "Designar responsables del préstamo de raquetas y pelotas."
 ---
-Habilitar el uso de la mesa de tenis como un espacio de recreación e integración estudiantil, estableciendo horarios organizados que no interfieran con el desarrollo de las actividades académicas.
+La Escuela tiene una mesa de tenis que hoy no está disponible para los estudiantes. Abrirla con horarios y reglas claras da un espacio para descansar y compartir entre clases, sin afectar las actividades académicas.

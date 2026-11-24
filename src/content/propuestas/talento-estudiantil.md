@@ -9,4 +9,4 @@ pasos:
   - "Publicar esos logros en los canales del Centro de Estudiantes, con el permiso de cada autor."
   - "Crear un espacio de presentaciones donde los estudiantes cuenten sus proyectos y experiencias."
 ---
-Promover y dar visibilidad a los proyectos, logros, investigaciones, participaciones y actividades desarrolladas por los estudiantes de la escuela, generando espacios para compartir sus experiencias y reconocer su talento.
+En la Escuela hay estudiantes que participan en competencias, investigan o construyen proyectos propios, y muchas veces el resto no se entera. Darlos a conocer reconoce su esfuerzo y anima a otros a intentarlo.

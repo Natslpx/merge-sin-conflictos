@@ -10,4 +10,4 @@ pasos:
   - "Presentar las solicitudes a la Dirección de la Escuela."
   - "Informar a los estudiantes cómo avanza cada solicitud."
 ---
-Identificar necesidades y gestionar mejoras en los espacios de uso común de la escuela, promoviendo ambientes adecuados para el estudio, descanso e integración.
+Pasamos muchas horas en la Escuela entre clases, y que los espacios comunes sirvan para estudiar, descansar o compartir influye en cómo vivimos la carrera. Como estos espacios dependen de la Escuela, nuestro rol es identificar lo que hace falta y llevarlo a la Dirección como un pedido concreto.

@@ -10,4 +10,4 @@ pasos:
   - "Publicar la lista de libros disponibles."
   - "Difundir el servicio entre todos los años."
 ---
-Gestionar la apertura y promoción del servicio de préstamo de libros de la biblioteca de la escuela, facilitando el acceso de los estudiantes a los recursos bibliográficos disponibles.
+La biblioteca de la Escuela tiene libros que hoy los estudiantes no pueden llevarse en préstamo. Reactivar el servicio permite aprovechar recursos que ya existen y que pueden servir a todos.

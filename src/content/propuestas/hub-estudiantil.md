@@ -10,4 +10,4 @@ pasos:
   - "Mantenerlo actualizado con un equipo responsable."
   - "Documentarlo para que la siguiente gestión pueda seguir usándolo."
 ---
-Desarrollar un portal digital del Centro de Estudiantes que centralice información relevante para la comunidad estudiantil, incluyendo anuncios, eventos, oportunidades, recursos académicos, actividades y canales de comunicación.
+Hoy la información del Centro y de la Escuela está repartida entre grupos, redes y publicaciones sueltas. El portal reúne en un solo lugar lo que ofrecen otras propuestas, como el canal de oportunidades, el repositorio y los eventos. Además, es un proyecto real que pueden construir estudiantes de la Escuela.

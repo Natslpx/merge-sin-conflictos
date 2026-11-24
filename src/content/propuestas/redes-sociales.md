@@ -10,4 +10,4 @@ pasos:
   - "Difundir los logros de los estudiantes de la Escuela."
   - "Responder los mensajes y consultas que lleguen por redes."
 ---
-Mejorar la presencia digital del Centro de Estudiantes mediante una gestión activa y organizada de sus redes sociales, difundiendo eventos, convocatorias, oportunidades, logros estudiantiles, información académica y actividades de la escuela, con contenido dinámico que mantenga informada y conectada a la comunidad.
+Las redes son el canal por el que la mayoría de estudiantes se entera de lo que pasa en la Escuela. Si se actualizan de forma irregular, la información no llega. Con un equipo y un calendario, el Centro informa a tiempo y muestra lo que hacen sus estudiantes.

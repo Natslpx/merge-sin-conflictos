@@ -56,9 +56,13 @@ const vecinas = [
         </p>
         <p class="mt-5 max-w-[48ch] text-xl leading-snug text-texto-suave md:text-2xl">{resumen}</p>
 
-        <div class="cuerpo mt-8 max-w-[65ch] space-y-4 text-lg">
-          <Content />
-        </div>
+        <!-- Qué (resumen) → por qué (cuerpo del Markdown) → cómo (pasos) → cuándo (plazo). -->
+        <section class="mt-10 max-w-[65ch]" aria-labelledby="titulo-por-que">
+          <h2 id="titulo-por-que" class="text-2xl font-extrabold">Por qué lo proponemos</h2>
+          <div class="cuerpo mt-4 space-y-4 text-lg">
+            <Content />
+          </div>
+        </section>
 
         {
           pasos && pasos.length > 0 && (
