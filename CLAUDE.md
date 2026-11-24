@@ -33,7 +33,8 @@ desde un enlace compartido en WhatsApp o Instagram.
   (`glob` loader y esquema con `zod` en `src/content.config.ts`).
 - **Tailwind CSS** (versión actual, integrado con Vite).
 - JavaScript mínimo: solo para el filtro por eje y el buscador de la página de propuestas.
-- Despliegue: **Vercel** o **Netlify**, conectado al repositorio de GitHub (sitio estático).
+- Despliegue: **GitHub Pages**, con GitHub Actions (`.github/workflows/deploy.yml`). Los enlaces internos
+  usan `ruta()` de `src/lib/rutas.ts` para respetar la carpeta del repositorio.
 
 ## Skill de frontend: Impeccable
 
@@ -95,7 +96,7 @@ Una página principal (`/`) con secciones y anclas, más una página por propues
    - en cada tarjeta: eje (con su punto de color), título, resumen y enlace "Ver propuesta";
    - un estado vacío amable cuando la búsqueda no encuentra nada.
 4. **Quiénes somos**: la fórmula de dos personas, desde `src/content/equipo/`.
-   - **Natalie Lazo (Presidenta)** va primero y con más espacio: nombre, apodo "Nat", cargo, ciclo,
+   - **Natalie Lazo (Presidenta)** va primero; ambos tienen el mismo tamaño de avatar y de texto: nombre, apodo "Nat", cargo, ciclo,
      su presentación, sus logros como lista (cuerpo del Markdown) y su motivación para postular.
    - **Jhair Torres (Vicepresidente)** va a continuación, con nombre, cargo y descripción.
    - Usa foto si existe (`foto`). Si no, muestra un avatar con las iniciales en los colores de la marca.
@@ -203,18 +204,18 @@ merge-sin-conflictos/
 6. **Revisión**: `/impeccable critique`, `/impeccable audit` y `/impeccable harden`.
    Probar a 360, 768 y 1280 px, y en modo oscuro si se implementa.
 7. **Publicación**: metadatos Open Graph, `og-image`, `npm run build` sin errores
-   y despliegue en Vercel o Netlify.
+   y despliegue en GitHub Pages.
 
 ## Datos pendientes (no inventar)
 
 - [ ] Descripción definitiva de Jhair (la actual es provisional y genérica)
 - [ ] Ciclo de Jhair
-- [ ] Fotos de Natalie y Jhair (opcional)
+- [x] Foto de Natalie (`src/assets/equipo/natalie-lazo.png`)
+- [ ] Foto de Jhair (opcional)
 - [ ] Plazos y pasos de cada propuesta (opcional)
-- [ ] Redes sociales y correo de la lista
+- [x] Contacto: solo correo, nlazop@unsa.edu.pe (sin redes sociales)
 - [x] Logo oficial (`src/assets/campana/logo.jpg`)
 - [ ] Imagen para compartir (og-image)
-- [ ] Forma oficial de marcar y cédula real (hoy hay una imagen provisional en `src/assets/campana/como-marcar.svg`)
 - [ ] Confirmar el eslogan «Todas las ramas llevan a la Escuela.»
 - [ ] Fecha de la elección (para el llamado a votar)
-- [ ] URL definitiva del sitio (para Open Graph, en `astro.config.mjs`)
+- [ ] Repositorio en GitHub (la URL de GitHub Pages se toma de ahí al publicar)

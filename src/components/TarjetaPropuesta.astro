@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import type { CollectionEntry } from 'astro:content';
 import { ejePorId } from '../data/ejes';
 import { normalizar } from '../lib/texto';
@@ -32,7 +33,7 @@ const textoBusqueda = normalizar(`${titulo} ${resumen} ${datosEje.nombre}`);
         {datosEje.nombre}
       </span>
       <a
-        href={`/propuestas/${propuesta.id}`}
+        href={ruta(`/propuestas/${propuesta.id}`)}
         class="inline-flex min-h-11 items-center gap-1 font-bold text-enlace underline decoration-transparent transition-colors group-hover:decoration-current after:absolute after:inset-0 after:content-['']"
       >
         Ver propuesta<span class="sr-only">: {titulo}</span>

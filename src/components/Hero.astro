@@ -2,66 +2,118 @@
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Icono from './Icono.astro';
-import logo from '../assets/campana/logo.jpg';
+import logo from '../assets/campana/logo.png';
 
 // La fórmula sale de src/content/equipo (nombre completo y cargo).
 const equipo = (await getCollection('equipo')).sort((a, b) => a.data.orden - b.data.orden);
+// Cada candidato es una rama que sale de main (el logo): azul para la presidenta, verde para el vice.
+// «Natalie Marleny Lazo Paxi» → nombres en una línea y apellidos en la siguiente.
+const partirNombre = (nombre: string) => {
+  const p = nombre.trim().split(/\s+/);
+  const mitad = Math.ceil(p.length / 2);
+  return [p.slice(0, mitad).join(' '), p.slice(mitad).join(' ')];
+};
+const colorRama = (cargo: string) => (cargo === 'Presidenta' ? 'var(--color-eje-academico)' : 'var(--color-verde)');
 ---
 
-<section
-  id="inicio"
-  aria-labelledby="titulo-inicio"
-  class="mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-6xl flex-col items-center justify-center px-4 py-8 text-center md:px-8 md:py-12"
->
-  <h1
-    id="titulo-inicio"
-    class="text-[clamp(2.6rem,11.5vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.03em] [font-variation-settings:'opsz'_96]"
+<div class="relative">
+  <section
+    id="inicio"
+    aria-labelledby="titulo-inicio"
+    class="hero mx-auto flex min-h-[calc(100svh-4rem)] max-w-6xl flex-col items-center px-4 pt-6 text-center md:px-8 md:pt-8"
   >
-    <span class="block">Merge sin conflictos</span>
-    <span class="mt-1 flex items-center justify-center gap-[0.22em] md:mt-2">
-      Somos lista
-      <span
-        class="inline-grid size-[1.15em] place-items-center rounded-full bg-verde leading-none text-negro"
-        aria-hidden="true">3</span
-      ><span class="sr-only">3</span>
-    </span>
-  </h1>
+    <span class="min-h-0 flex-1" aria-hidden="true"></span>
+    <h1
+      id="titulo-inicio"
+      class="leading-[1.02] font-extrabold tracking-[-0.03em] [font-variation-settings:'opsz'_96]"
+    >
+      <span class="block text-[clamp(3.1rem,14.5vw,7rem)] leading-[0.98]"><span class="resaltado">Merge sin conflictos</span></span>
+      <span class="mt-9 flex items-center justify-center gap-[0.22em] text-[clamp(2.4rem,10.5vw,4.75rem)] md:mt-12">
+        Somos lista
+        <span
+          class="inline-grid size-[1.15em] place-items-center rounded-full bg-verde leading-none text-negro"
+          aria-hidden="true">3</span
+        ><span class="sr-only">3</span>
+      </span>
+    </h1>
 
-  <div class="logo-entrada mt-5 md:mt-6">
-    <Image
-      src={logo}
-      alt="Logo de Merge sin conflictos: un personaje naranja con sombrero arequipeño que levanta el pulgar."
-      width={480}
-      height={480}
-      loading="eager"
-      fetchpriority="high"
-      class="size-52 rounded-[2rem] bg-blanco min-[25rem]:size-60 md:size-[min(16rem,30svh)]"
-    />
-  </div>
+    <!-- main: el logo. De él salen las ramas. -->
+    <div class="logo-entrada relative z-10 mt-8 md:mt-8">
+      <Image
+        src={logo}
+        alt="Logo de Merge sin conflictos: un personaje naranja con sombrero arequipeño que levanta el pulgar."
+        width={560}
+        loading="eager"
+        fetchpriority="high"
+        class="logo-main h-auto w-56 min-[25rem]:w-64 md:w-[min(16rem,24svh)]"
+      />
+    </div>
 
-  <ul class="mt-5 grid w-full max-w-lg grid-cols-2 gap-3 md:mt-6 md:gap-6">
-    {
-      equipo.map((integrante) => (
-        <li class="grid grid-rows-[1fr_auto] justify-items-center">
-          <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-superficie px-3 py-3 font-titular text-base leading-tight font-bold text-balance ring-2 ring-borde min-[25rem]:text-lg md:text-xl">
-            {integrante.data.nombre}
-          </span>
-          <span class="mt-2 text-sm font-bold md:text-base">{integrante.data.cargo}</span>
-        </li>
-      ))
-    }
-  </ul>
+    <svg class="ramas-hero h-10 w-full max-w-lg md:h-14" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" aria-hidden="true">
+      <path d="M50 0 V40" stroke="var(--color-texto)" />
+      {
+        equipo.map((integrante, i) => {
+          const x = i === 0 ? 25 : 75;
+          return <path d={`M50 0 C50 26 ${x} 14 ${x} 40`} stroke={colorRama(integrante.data.cargo)} />;
+        })
+      }
+    </svg>
 
-  <a
-    href="#propuestas"
-    class="group mt-7 inline-flex min-h-14 items-center gap-2 rounded-full bg-verde px-8 font-titular text-xl font-extrabold text-negro transition-[filter,transform] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-95 md:mt-7 md:text-2xl"
-  >
-    Ver propuestas
-    <Icono nombre="abajo" class="size-6 transition-transform duration-200 ease-out group-hover:translate-y-0.5" />
-  </a>
-</section>
+    <ul class="relative grid w-full max-w-lg grid-cols-2 gap-4 md:gap-6">
+      <span class="linea-main absolute inset-y-0 left-1/2 -translate-x-1/2" aria-hidden="true"></span>
+      {
+        equipo.map((integrante) => (
+          <li class="relative grid grid-rows-[1fr_auto] justify-items-center" style={`--c: ${colorRama(integrante.data.cargo)}`}>
+            <span class="flex h-full min-h-[4.5rem] w-full items-center justify-center rounded-[1.75rem] bg-tarjeta px-3 py-3 font-titular text-base leading-tight font-bold text-balance ring-[3px] ring-(--c) min-[25rem]:text-lg md:text-xl">
+              {partirNombre(integrante.data.nombre)[0]}<br />{partirNombre(integrante.data.nombre)[1]}
+            </span>
+            <span class="mt-2 text-sm font-bold md:text-base">{integrante.data.cargo}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <span class="linea-main h-6 md:h-8" aria-hidden="true"></span>
+
+    <a
+      href="#propuestas"
+      class="group relative inline-flex min-h-14 items-center gap-2 rounded-full bg-verde px-8 font-titular text-xl font-extrabold text-negro ring-4 ring-fondo transition-[filter,transform] duration-200 ease-out hover:-translate-y-0.5 hover:brightness-95 md:text-2xl"
+    >
+      Ver propuestas
+      <Icono nombre="abajo" class="size-6 transition-transform duration-200 ease-out group-hover:translate-y-0.5" />
+    </a>
+
+    <!-- main sigue bajando hasta las propuestas. -->
+    <span class="linea-main min-h-10 flex-1" aria-hidden="true"></span>
+  </section>
+</div>
 
 <style>
+  .hero {
+    --t: 4px;
+  }
+  @media (min-width: 48rem) {
+    .hero {
+      --t: 6px;
+    }
+  }
+  /* Sombra que sigue la silueta del logo (ya no tiene fondo). */
+  .logo-main {
+    filter: drop-shadow(0 12px 18px rgb(3 77 161 / 0.22));
+  }
+  .linea-main {
+    display: block;
+    width: var(--t);
+    background: var(--color-texto);
+  }
+  .ramas-hero {
+    overflow: visible;
+  }
+  .ramas-hero path {
+    stroke-width: var(--t);
+    vector-effect: non-scaling-stroke;
+  }
+
   /* Primera impresión: el logo entra con un pequeño rebote al abrir el enlace. */
   @media (prefers-reduced-motion: no-preference) {
     .logo-entrada {

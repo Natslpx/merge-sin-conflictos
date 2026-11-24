@@ -5,6 +5,7 @@ import Rail from '../components/Rail.astro';
 import Hero from '../components/Hero.astro';
 import ListaPropuestas from '../components/ListaPropuestas.astro';
 import QuienesSomos from '../components/QuienesSomos.astro';
+import MarcaAsi from '../components/MarcaAsi.astro';
 import Contacto from '../components/Contacto.astro';
 
 const propuestas = (await getCollection('propuestas')).sort((a, b) => a.data.orden - b.data.orden);
@@ -16,11 +17,55 @@ const propuestas = (await getCollection('propuestas')).sort((a, b) => a.data.ord
 >
   <Hero />
   <div class="mx-auto max-w-6xl px-4 md:px-8">
+    <!-- main baja del logo, gira y entra al nodo donde nacen las ramas de las propuestas. -->
+    <div class="conector relative h-16 md:h-24" aria-hidden="true">
+      <span class="codo-a"></span>
+      <span class="codo-b"></span>
+    </div>
     <div class="historial">
       <Rail merge />
       <ListaPropuestas propuestas={propuestas} />
     </div>
   </div>
   <QuienesSomos />
+  <MarcaAsi />
   <Contacto />
 </Base>
+
+<style>
+  .conector {
+    --t: 4px;
+    --nx: 28px; /* x del nodo de main en la columna de ramas */
+    --r: 1.5rem;
+  }
+  @media (min-width: 48rem) {
+    .conector {
+      --t: 6px;
+      --nx: 56px;
+      --r: 2rem;
+    }
+  }
+  .codo-a,
+  .codo-b {
+    position: absolute;
+    border: 0 solid var(--color-texto);
+  }
+  .codo-a {
+    top: 0;
+    height: calc(50% + var(--t) / 2);
+    left: calc(var(--nx) - var(--t) / 2 + var(--r));
+    right: calc(50% - var(--t) / 2);
+    border-right-width: var(--t);
+    border-bottom-width: var(--t);
+    border-bottom-right-radius: var(--r);
+  }
+  .codo-b {
+    bottom: 0;
+    top: calc(50% - var(--t) / 2);
+    left: calc(var(--nx) - var(--t) / 2);
+    right: calc(50% - var(--t) / 2 + var(--r));
+    border-left-width: var(--t);
+    border-top-width: var(--t);
+    border-top-left-radius: var(--r);
+  }
+</style>

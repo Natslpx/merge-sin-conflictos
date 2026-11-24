@@ -1,24 +1,26 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/campana/logo.jpg';
-
+import { ruta } from '../lib/rutas';
 const enlaces = [
-  { href: '/#propuestas', texto: 'Propuestas' },
-  { href: '/#quienes-somos', texto: 'Quiénes somos' },
-  { href: '/#contacto', texto: 'Contacto' },
+  { href: ruta('/#propuestas'), texto: 'Propuestas' },
+  { href: ruta('/#quienes-somos'), texto: 'Quiénes somos' },
+  { href: ruta('/#contacto'), texto: 'Contacto' },
 ];
 ---
 
-<header>
-  <nav aria-label="Principal" class="mx-auto flex max-w-6xl items-center justify-between gap-x-3 px-4 md:px-8">
-    <a href="/" class="flex min-h-14 shrink-0 items-center">
-      <Image src={logo} alt="Merge sin conflictos, inicio" width={96} height={96} class="size-12 rounded-xl bg-blanco" />
-    </a>
-    <ul class="flex gap-x-3 text-sm font-bold whitespace-nowrap min-[25rem]:gap-x-4 min-[25rem]:text-[0.9375rem] md:gap-x-7">
+<!--
+  Barra transparente: cada enlace es una pastilla flotante. Al bajar por la página se
+  desvanece; al subir (o al llegar con el teclado) vuelve a aparecer.
+-->
+<header class="barra sticky top-0 z-50" data-barra>
+  <nav aria-label="Principal" class="mx-auto flex max-w-6xl justify-center px-4 py-2 md:px-8 md:py-3">
+    <ul class="flex gap-1.5 text-sm font-bold whitespace-nowrap min-[25rem]:gap-2.5 md:gap-4 md:text-base">
       {
         enlaces.map((e) => (
           <li>
-            <a href={e.href} class="flex min-h-14 items-center underline decoration-transparent hover:decoration-current">
+            <a
+              href={e.href}
+              class="flotante flex min-h-11 items-center rounded-full bg-tarjeta/85 px-2.5 ring-1 ring-borde backdrop-blur-md transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:ring-2 hover:ring-verde min-[25rem]:px-4 md:min-h-12 md:px-6"
+            >
               {e.texto}
             </a>
           </li>
@@ -27,3 +29,60 @@ const enlaces = [
     </ul>
   </nav>
 </header>
+
+<style>
+  .barra {
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .barra.oculta:not(:focus-within) {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .barra {
+      transition: opacity 0.2s linear;
+    }
+    .barra.oculta:not(:focus-within) {
+      transform: none;
+    }
+  }
+  .flotante {
+    box-shadow:
+      0 1px 2px rgb(3 77 161 / 0.08),
+      0 8px 20px -8px rgb(3 77 161 / 0.3);
+  }
+  .flotante:hover {
+    box-shadow:
+      0 2px 4px rgb(3 77 161 / 0.1),
+      0 14px 28px -10px rgb(3 77 161 / 0.4);
+  }
+</style>
+
+<script>
+  const barra = document.querySelector<HTMLElement>('[data-barra]');
+  if (barra) {
+    let anterior = window.scrollY;
+    let pendiente = false;
+    const actualizar = () => {
+      const y = window.scrollY;
+      // Se oculta al bajar (pasado el inicio) y reaparece al subir.
+      if (y > 80 && y > anterior + 4) barra.classList.add('oculta');
+      else if (y < anterior - 4 || y <= 80) barra.classList.remove('oculta');
+      anterior = y;
+      pendiente = false;
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!pendiente) {
+          pendiente = true;
+          requestAnimationFrame(actualizar);
+        }
+      },
+      { passive: true },
+    );
+  }
+</script>

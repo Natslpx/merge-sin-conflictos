@@ -16,7 +16,9 @@
   --color-negro: #0b0f14;
 
   /* Roles semánticos (cambian en modo oscuro) */
-  --color-fondo: var(--color-blanco);
+  --color-fondo: color-mix(in srgb, var(--color-azul) 3%, white);
+  --color-tarjeta: var(--color-blanco);
+  --color-resaltado: color-mix(in srgb, var(--color-verde) 70%, white);
   --color-texto: var(--color-negro);
   --color-texto-suave: color-mix(in srgb, var(--color-negro) 75%, white);
   --color-enlace: var(--color-azul);
@@ -32,7 +34,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-fondo: var(--color-negro);
+    --color-fondo: color-mix(in srgb, var(--color-azul) 7%, var(--color-negro));
+    --color-tarjeta: color-mix(in srgb, var(--color-azul) 22%, var(--color-negro));
+    --color-resaltado: color-mix(in srgb, var(--color-verde) 45%, var(--color-negro));
     --color-texto: #eef1f4;
     --color-texto-suave: color-mix(in srgb, #eef1f4 75%, var(--color-negro));
     --color-enlace: color-mix(in srgb, var(--color-azul) 45%, white);
@@ -58,8 +62,29 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /*
+   * Fondo de toda la página: degradado de azul y blanco que va y vuelve a lo largo del
+   * recorrido, con luces verdes sueltas. Las capas se miden sobre el alto total del body.
+   */
   body {
     line-height: 1.55;
+    background-color: var(--color-fondo);
+    background-image:
+      radial-gradient(34rem 26rem at 100% 4%, color-mix(in srgb, var(--color-verde) 16%, transparent), transparent 70%),
+      radial-gradient(30rem 24rem at 0% 30%, color-mix(in srgb, var(--color-verde) 12%, transparent), transparent 70%),
+      radial-gradient(36rem 28rem at 100% 55%, color-mix(in srgb, var(--color-azul) 16%, transparent), transparent 70%),
+      radial-gradient(30rem 24rem at 0% 76%, color-mix(in srgb, var(--color-verde) 13%, transparent), transparent 70%),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-azul) 18%, transparent) 0%,
+        transparent 16%,
+        color-mix(in srgb, var(--color-azul) 9%, transparent) 30%,
+        transparent 44%,
+        color-mix(in srgb, var(--color-azul) 12%, transparent) 62%,
+        color-mix(in srgb, var(--color-azul) 4%, transparent) 72%,
+        color-mix(in srgb, var(--color-azul) 14%, transparent) 100%
+      );
+    background-repeat: no-repeat;
   }
 
   h1,
@@ -113,6 +138,27 @@
  * --x-* es la posición de cada rama dentro de la columna.
  */
 @layer components {
+  /* Cierre: azul que se oscurece, con una luz verde en la esquina. */
+  .fondo-contacto {
+    background:
+      radial-gradient(28rem 20rem at 100% 100%, color-mix(in srgb, var(--color-verde) 28%, transparent), transparent 70%),
+      linear-gradient(160deg, var(--color-azul), color-mix(in srgb, var(--color-azul) 72%, var(--color-negro)));
+  }
+
+  /* Resaltado de marcador verde detrás del texto. */
+  .resaltado {
+    background-image: linear-gradient(
+      transparent 56%,
+      var(--color-resaltado) 56%,
+      var(--color-resaltado) 90%,
+      transparent 90%
+    );
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-inline: 0.06em;
+  }
+
+
   .historial {
     --rail: 3.5rem;
     --hueco: 1rem;

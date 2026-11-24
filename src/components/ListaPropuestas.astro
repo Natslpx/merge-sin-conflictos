@@ -10,11 +10,11 @@ interface Props {
 
 const { propuestas } = Astro.props;
 const chip =
-  'chip inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-borde px-4 text-sm font-bold transition-colors hover:border-texto aria-pressed:border-texto aria-pressed:bg-texto aria-pressed:text-fondo';
+  'chip inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-borde bg-tarjeta px-4 text-sm font-bold transition-colors hover:border-texto aria-pressed:border-texto aria-pressed:bg-texto aria-pressed:text-fondo';
 ---
 
-<section id="propuestas" aria-labelledby="titulo-propuestas" class="scroll-mt-4 pb-16 md:pb-24" data-lista-propuestas>
-  <h2 id="titulo-propuestas" class="text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl">Propuestas</h2>
+<section id="propuestas" aria-labelledby="titulo-propuestas" class="scroll-mt-20 pb-16 md:pb-24" data-lista-propuestas>
+  <h2 id="titulo-propuestas" class="text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl"><span class="resaltado">Propuestas</span></h2>
   <p class="mt-3 max-w-[46ch] text-lg text-texto-suave">
     Cada eje es una rama. Cada propuesta, un cambio concreto que hace merge a la Escuela.
   </p>
@@ -46,7 +46,7 @@ const chip =
           autocomplete="off"
           enterkeyhint="search"
           placeholder="Por ejemplo: biblioteca"
-          class="min-h-12 w-full rounded-xl border-2 border-borde bg-fondo pr-3 pl-10 text-base transition-colors placeholder:text-texto-suave hover:border-texto focus:border-enlace"
+          class="min-h-12 w-full rounded-xl border-2 border-borde bg-tarjeta pr-3 pl-10 text-base transition-colors placeholder:text-texto-suave hover:border-texto focus:border-enlace"
           data-buscador
         />
       </div>

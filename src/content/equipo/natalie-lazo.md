@@ -5,6 +5,7 @@ apodo: Nat
 cargo: Presidenta
 ciclo: 6.º ciclo
 orden: 1
+foto: ../../assets/equipo/natalie-lazo.png
 ---
 Soy Natalie Lazo, Nat, estudiante de 6.º ciclo de Ciencia de la Computación. Me apasiona liderar, resolver problemas y trabajar en equipo. Disfruto convertir ideas en proyectos reales y, sobre todo, ayudar a otros a crecer, algo que aprendí como voluntaria.
 

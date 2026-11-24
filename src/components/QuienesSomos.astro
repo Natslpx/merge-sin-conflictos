@@ -10,37 +10,30 @@ const integrantes = await Promise.all(
 );
 ---
 
-<section id="quienes-somos" aria-labelledby="titulo-quienes" class="scroll-mt-4 bg-superficie py-16 md:py-24">
+<section id="quienes-somos" aria-labelledby="titulo-quienes" class="scroll-mt-20 py-16 md:py-24">
   <div class="mx-auto max-w-6xl px-4 md:px-8">
-    <h2 id="titulo-quienes" class="text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl">Quiénes somos</h2>
+    <h2 id="titulo-quienes" class="text-center text-4xl leading-none font-extrabold tracking-[-0.02em] md:text-5xl"><span class="resaltado">Quiénes somos</span></h2>
 
-    <div class="mt-10 space-y-14 md:mt-14">
+    <div class="mx-auto mt-10 max-w-3xl space-y-8 md:mt-14 md:space-y-12">
       {
         integrantes.map(({ entrada, Contenido }) => {
           const d = entrada.data;
           const esPresidenta = d.cargo === 'Presidenta';
           return (
-            <article
-              class:list={[
-                'grid gap-5 md:gap-x-10',
-                esPresidenta ? 'md:grid-cols-[12rem_1fr]' : 'md:grid-cols-[12rem_1fr] md:items-start',
-              ]}
-            >
-              <div class="md:justify-self-end">
+            <article class="tarjeta-perfil flex flex-col gap-6 rounded-[2rem] bg-tarjeta/45 p-6 ring-1 ring-blanco/70 backdrop-blur-md md:gap-8 md:p-12">
+              <div class="self-center" style={`--c: ${esPresidenta ? 'var(--color-eje-academico)' : 'var(--color-verde)'}`}>
                 {d.foto ? (
                   <Image
                     src={d.foto}
                     alt={`Foto de ${d.nombre_corto}`}
-                    width={esPresidenta ? 192 : 128}
-                    class:list={['rounded-full object-cover', esPresidenta ? 'size-32 md:size-48' : 'size-24 md:size-32']}
+                    width={576}
+                    class="size-52 rounded-full bg-tarjeta object-cover object-[50%_18%] ring-4 ring-(--c) ring-offset-4 ring-offset-transparent shadow-[0_16px_36px_-14px_rgb(3_77_161/0.5)] md:size-72"
                   />
                 ) : (
                   <div
                     class:list={[
-                      'grid place-items-center rounded-full font-titular font-extrabold tracking-[-0.02em]',
-                      esPresidenta
-                        ? 'size-32 bg-azul text-5xl text-blanco md:size-48 md:text-7xl'
-                        : 'size-24 bg-verde text-3xl text-negro md:size-32 md:text-5xl',
+                      'grid size-52 place-items-center rounded-full font-titular text-7xl font-extrabold tracking-[-0.02em] ring-4 ring-(--c) ring-offset-4 ring-offset-tarjeta shadow-[0_16px_36px_-14px_rgb(3_77_161/0.5)] md:size-72 md:text-8xl',
+                      esPresidenta ? 'bg-azul text-blanco' : 'bg-verde text-negro',
                     ]}
                     aria-hidden="true"
                   >
@@ -49,7 +42,7 @@ const integrantes = await Promise.all(
                 )}
               </div>
               <div class="max-w-[62ch]">
-                <h3 class:list={['leading-tight font-extrabold', esPresidenta ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl']}>
+                <h3 class="text-3xl leading-tight font-extrabold md:text-4xl">
                   {d.nombre_corto}
                   {d.apodo && <span class="font-semibold text-texto-suave"> · «{d.apodo}»</span>}
                 </h3>
@@ -63,7 +56,7 @@ const integrantes = await Promise.all(
                     {d.provisional && <Pendiente>descripción definitiva (la actual es provisional)</Pendiente>}
                   </p>
                 )}
-                <div class:list={['presentacion mt-4 space-y-4', esPresidenta && 'md:text-lg']}>
+                <div class="presentacion mt-4 space-y-4 md:text-lg">
                   <Contenido />
                 </div>
               </div>
@@ -76,6 +69,11 @@ const integrantes = await Promise.all(
 </section>
 
 <style>
+  .tarjeta-perfil {
+    box-shadow:
+      0 1px 2px rgb(3 77 161 / 0.06),
+      0 24px 48px -28px rgb(3 77 161 / 0.45);
+  }
   .presentacion :global(ul) {
     display: grid;
     gap: 0.625rem;

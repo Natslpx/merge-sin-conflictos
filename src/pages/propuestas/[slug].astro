@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../../lib/rutas';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -37,7 +38,7 @@ const vecinas = [
       <Rail activo={eje} />
 
       <a
-        href="/#propuestas"
+        href={ruta('/#propuestas')}
         class="group mt-4 inline-flex min-h-11 items-center gap-2 font-bold text-enlace underline decoration-transparent hover:decoration-current"
       >
         <Icono nombre="izquierda" class="transition-transform duration-200 ease-out group-hover:-translate-x-0.5" />
@@ -83,7 +84,7 @@ const vecinas = [
         <div class="mt-10">
           <BotonCompartir
             texto={`Propuesta de Merge sin conflictos: ${titulo}.`}
-            ruta={`/propuestas/${propuesta.id}`}
+            ruta={ruta(`/propuestas/${propuesta.id}`)}
             etiqueta="Compartir propuesta"
           />
         </div>
@@ -94,7 +95,7 @@ const vecinas = [
           vecinas.map(({ entrada, rotulo, rel }) =>
             entrada ? (
               <a
-                href={`/propuestas/${entrada.id}`}
+                href={ruta(`/propuestas/${entrada.id}`)}
                 rel={rel}
                 class:list={[
                   'group flex min-h-11 flex-col rounded-2xl border-2 border-borde p-4 transition-colors hover:border-texto',

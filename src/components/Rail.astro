@@ -15,8 +15,8 @@ const { merge = false, activo } = Astro.props;
 
 // Coordenadas en px de la bifurcación, para la columna angosta (móvil) y la ancha.
 const variantes = [
-  { clase: 'bifurcacion-sm', ancho: 56, alto: 120, cx: 28, cy: 50, r: 15, trazo: 4, xs: [10, 22, 34, 46] },
-  { clase: 'bifurcacion-lg', ancho: 112, alto: 196, cx: 56, cy: 106, r: 26, trazo: 6, xs: [20, 44, 68, 92] },
+  { clase: 'bifurcacion-sm', ancho: 56, alto: 96, cx: 28, cy: 18, r: 13, trazo: 4, xs: [10, 22, 34, 46] },
+  { clase: 'bifurcacion-lg', ancho: 112, alto: 150, cx: 56, cy: 24, r: 21, trazo: 6, xs: [20, 44, 68, 92] },
 ];
 ---
 
@@ -45,6 +45,7 @@ const variantes = [
               />
             );
           })}
+          <path class="main" d={`M${v.cx} 0 V${v.cy}`} stroke="var(--color-texto)" stroke-width={v.trazo} />
           <circle cx={v.cx} cy={v.cy} r={v.r} fill="var(--color-texto)" />
           <circle cx={v.cx} cy={v.cy} r={v.r * 0.4} fill="var(--color-verde)" />
         </svg>
@@ -63,7 +64,7 @@ const variantes = [
 
 <style>
   .rail-merge {
-    --inicio-ramas: 120px;
+    --inicio-ramas: 96px;
   }
   .bifurcacion {
     position: absolute;
@@ -76,7 +77,7 @@ const variantes = [
   }
   @media (min-width: 48rem) {
     .rail-merge {
-      --inicio-ramas: 196px;
+      --inicio-ramas: 150px;
     }
     .bifurcacion-sm {
       display: none;
@@ -88,7 +89,7 @@ const variantes = [
 
   /* El único momento animado: las ramas salen de main al cargar. */
   @media (prefers-reduced-motion: no-preference) {
-    .bifurcacion path {
+    .bifurcacion path:not(.main) {
       stroke-dasharray: 1;
       animation: brotar 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
     }

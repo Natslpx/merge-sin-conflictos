@@ -3,11 +3,11 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { getImage } from 'astro:assets';
-import logo from '../assets/campana/logo.jpg';
+import logo from '../assets/campana/logo.png';
 
 // Ícono de la pestaña y de acceso directo, generados desde el logo de la campaña.
-const favicon = await getImage({ src: logo, width: 64, height: 64, format: 'png' });
-const iconoApple = await getImage({ src: logo, width: 180, height: 180, format: 'png' });
+const favicon = await getImage({ src: logo, width: 64, format: 'png' });
+const iconoApple = await getImage({ src: logo, width: 180, format: 'png' });
 
 interface Props {
   titulo: string;
